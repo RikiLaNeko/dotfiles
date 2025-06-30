@@ -46,7 +46,7 @@ alias pb-status='ps aux | grep protonmail-bridge'
 
 
 export EDITOR=nvim
-
+export VISUAL=yazi
 
 # Initialisation de Starship pour un prompt rapide et personnalisable
 eval "$(starship init zsh)"

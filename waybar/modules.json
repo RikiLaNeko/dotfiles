@@ -30,7 +30,7 @@
 
   // Wofi Application Launcher
   "custom/appmenu": {
-    "format": "❄️",
+    "format": "",
     "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings",
     "on-click": "~/.config/wofi/wofi.sh & sleep 0.2; hyprctl dispatch focuswindow '^(Wofi)'",
     "on-click-right": "~/.config/notscripter/scripts/keybindings.sh",
