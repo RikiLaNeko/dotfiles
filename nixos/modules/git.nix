@@ -8,6 +8,7 @@
     lazygit # UI Git en terminal
     lazydocker # UI Docker en terminal
     lazysql # UI SQL en terminal
+    gh #Cli Github
   ];
 }
 
