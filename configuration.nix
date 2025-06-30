@@ -8,6 +8,16 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/editors.nix
+      ./modules/communication.nix
+      ./modules/git.nix
+      ./modules/devtools.nix
+      ./modules/hyprland.nix
+      ./modules/terminal-utils.nix
+      ./modules/system-utils.nix
+      ./modules/multimedia.nix
+      ./modules/network.nix
+      ./modules/fun.nix
     ];
 
   # Bootloader.
@@ -133,120 +143,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  # --- Editors ---
-  neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-
-  # --- Networking & Terminal Tools ---
-  wget
-  ghostty
-  fzf  # Fuzzy finder
-  ripgrep # Search tool
-  fd # Fast file search
-  tldr # Simplified man pages
-  atuin # Command history tool
-  bat # cat better alternative
-  eza # ls better alternative
-  playerctl
-  brightnessctl # Contrôle de luminosité
-  thermald # Gestion thermique
-
-
-  # --- Wayland & Hyprland ---
-  waybar # Status bar for Wayland
-  wofi # Application launcher for Wayland
-  swww # Wayland screen locker
-  waypaper # Wayland wallpaper setter
-  vesktop # Wayland compositor
-  element-desktop
-  obsidian #Notion alternative
-  thunderbird
-  networkmanagerapplet
-  protonmail-bridge-gui
-  protonmail-bridge
-
-
-  # --- Browsers ---
-  teams-for-linux # Microsoft Teams for Linux
-  simplex-chat-desktop # Messagerie sécurisée et privée
-
-  # --- Git Tools ---
-  git # Git version control
-  gitleaks # Scan git repos (or files) for secrets
-  lazygit # Git UI for the terminal
-  lazydocker # Docker UI for the terminal
-  lazysql # SQL client for the terminal
-
-  # --- IDEs ---
-  jetbrains.idea-ultimate # IntelliJ IDEA Ultimate Edition
-  jetbrains.webstorm # WebStorm IDE
-  jetbrains.clion # CLion IDE
-  jetbrains-toolbox # JetBrains toolbox for managing IDEs
-
-  # --- System Monitoring & Utilities ---
-  fastfetch # System information fetcher
-  starship # Cross-shell prompt
-  btop #htop better alternative
-  nvtopPackages.nvidia
-  ncdu # Analyseur d'espace disque
-  procs
-  lsof
-  tmux
-  vulkan-loader
-  vulkan-tools
-
-  # --- File Management & Compression ---
-  ranger # Gestionnaire de fichiers en ligne de commande
-  rsync # Synchronisation de fichiers
-  zip # Compression d'archives
-
-  # --- Network Tools ---
-  dnsmasq # Serveur DNS et DHCP léger
-  curl # Requêtes HTTP/HTTPS
-  nmap # Scan de réseau
-  httpie # better postman
-  pavucontrol
-  pulsemixer
-
-  # --- Security & DevOps ---
-  gnupg # Gestion des clés GPG
-  vault # Gestion des secrets
-
-  # --- JSON & Diff Tools ---
-  jq # Manipulation de JSON
-  diff-so-fancy # Affichage des diff Git plus esthétique
-
-  # --- Fun & Misc ---
-  cowsay # Pour un peu de fun
-  minikube
-  steam
-  osu-lazer-bin
-  xonotic # FPS arena open-source
-  grim
-  slurp
-  swappy
-  wl-clipboard
-  nautilus
-  gimp
-  glib
-  swaynotificationcenter
-  adwaita-icon-theme
-  yazi
-
-  # --- Development Tools ---
-  #Javascript
-  bun
-
-  # Java
-  jdk21 # OpenJDK 21
-  kotlin # Kotlin compiler
-  spring-boot-cli # Spring Boot CLI
-  maven # Apache Maven build tool
-  gradle # Gradle build tool
-
-  # C/C++
-  clang # LLVM C/C++ compiler
-  cmake # Build automation tool
-  just # Command runner for CI/CD-like tasks
 
   ];
 
