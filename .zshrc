@@ -42,6 +42,14 @@ alias ls="eza --icons=always --color"
 alias e="exit"
 alias c="clear"
 alias cat=bat
+alias man=tldr
+alias grep=rg
+alias cp='rsync -a --info=progress2'
+alias ping=mtr
+alias blame="systemd-analyze blame"
+alias cchain="systemd-analyze critical-chain"
+alias ps=procs
+alias rm=shred
 alias pb-status='ps aux | grep protonmail-bridge'
 
 
