@@ -15,11 +15,20 @@
     lsof # Liste fichiers ouverts
     tmux # Multiplexeur de terminal
     ncdu # Analyse disque
-    ranger # Navigateur de fichiers CLI
     rsync # Synchronisation de fichiers
-    zip # Compression
     yazi # TUI file manager
     tmux # Terminal multiplexer
+    zellij #Terminal multiplexer
+    dysk #Better duf
+    duf #Better df
+    jq #Json processor
+    nixpkgs-fmt
+    dog #Better dig
+    tshark # Montioring
+    termshark #tshark TUI
+    moreutils #Get more utils (If you didnt understood you stoopid)
+    asciinema #Record terminal
+    asciinema-agg #Convert terminal vid into GIF
   ];
 }
 
