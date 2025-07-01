@@ -56,6 +56,23 @@
     };
   };
 
+  virtualisation.libvirtd = {
+  enable = true;
+  qemu = {
+    package = pkgs.qemu_kvm;
+    runAsRoot = true;
+    swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [(pkgs.OVMF.override {
+          secureBoot = true;
+          tpmSupport = true;
+        }).fd];
+      };
+    };
+  };
+
+
 
   services.xserver.videoDrivers = [ "nvidia" ];
   services.libinput.enable = true;
@@ -103,7 +120,7 @@
   users.users.dedsec = {
     isNormalUser = true;
     description = "dedsec";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" "libvirtd"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -153,6 +170,9 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  
+  programs.virt-manager.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
   
 
  ##########################

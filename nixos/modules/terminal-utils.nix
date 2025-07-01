@@ -18,6 +18,8 @@
     ranger # Navigateur de fichiers CLI
     rsync # Synchronisation de fichiers
     zip # Compression
+    yazi # TUI file manager
+    tmux # Terminal multiplexer
   ];
 }
 

@@ -12,6 +12,7 @@
 
     # --- Développement JavaScript ---
     bun # Runtime JS rapide
+    nodejs #Nodejs
 
     # --- C/C++ ---
     clang # Compilateur LLVM C/C++
