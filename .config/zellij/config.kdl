@@ -1,0 +1,177 @@
+// ~/.config/zellij/config.kdl
+
+keybinds {
+  normal {
+    bind "Alt i" { MoveTab "left"; }
+    bind "Alt o" { MoveTab "right"; }
+    bind "Alt n" { NewPane; }
+    bind "Ctrl q" { Quit; }
+  }
+
+  shared_except "locked" "move" {
+    bind "Ctrl h" { SwitchToMode "move"; }
+  }
+
+  shared_except "locked" "session" {
+    bind "Ctrl o" { SwitchToMode "session"; }
+  }
+
+  shared_except "locked" "scroll" {
+    bind "Alt left" { MoveFocusOrTab "left"; }
+    bind "Alt down" { MoveFocus "down"; }
+    bind "Alt up" { MoveFocus "up"; }
+    bind "Alt right" { MoveFocusOrTab "right"; }
+    bind "Alt h" { MoveFocusOrTab "left"; }
+    bind "Alt j" { MoveFocus "down"; }
+    bind "Alt k" { MoveFocus "up"; }
+    bind "Alt l" { MoveFocusOrTab "right"; }
+  }
+
+  shared_except "locked" "scroll" "search" "tmux" {
+    bind "Ctrl b" { SwitchToMode "tmux"; }
+  }
+
+  shared_except "locked" "scroll" "search" {
+    bind "Ctrl s" { SwitchToMode "scroll"; }
+  }
+
+  shared_except "locked" "tab" {
+    bind "Ctrl t" { SwitchToMode "tab"; }
+  }
+
+  shared_except "locked" "pane" {
+    bind "Ctrl p" { SwitchToMode "pane"; }
+  }
+
+  shared_except "locked" "resize" {
+    bind "Ctrl n" { SwitchToMode "resize"; }
+  }
+
+  shared_except "normal" "locked" "entersearch" {
+    bind "enter" { SwitchToMode "normal"; }
+  }
+
+  shared_except "normal" "locked" "entersearch" "renametab" "renamepane" {
+    bind "esc" { SwitchToMode "normal"; }
+  }
+
+  shared_among "pane" "tmux" {
+    bind "x" { CloseFocus; SwitchToMode "normal"; }
+  }
+
+  shared_among "scroll" "search" {
+    bind "PageDown" { PageScrollDown; }
+    bind "PageUp" { PageScrollUp; }
+    bind "left" { PageScrollUp; }
+    bind "down" { ScrollDown; }
+    bind "up" { ScrollUp; }
+    bind "right" { PageScrollDown; }
+    bind "Ctrl b" { PageScrollUp; }
+    bind "Ctrl c" { ScrollToBottom; SwitchToMode "normal"; }
+    bind "d" { HalfPageScrollDown; }
+    bind "Ctrl f" { PageScrollDown; }
+    bind "h" { PageScrollUp; }
+    bind "j" { ScrollDown; }
+    bind "k" { ScrollUp; }
+    bind "l" { PageScrollDown; }
+    bind "Ctrl s" { SwitchToMode "normal"; }
+    bind "u" { HalfPageScrollUp; }
+  }
+
+  entersearch {
+    bind "Ctrl c" { SwitchToMode "scroll"; }
+    bind "esc" { SwitchToMode "scroll"; }
+    bind "enter" { SwitchToMode "search"; }
+  }
+
+  renametab {
+    bind "esc" { UndoRenameTab; SwitchToMode "tab"; }
+  }
+
+  shared_among "renametab" "renamepane" {
+    bind "Ctrl c" { SwitchToMode "normal"; }
+  }
+
+  renamepane {
+    bind "esc" { UndoRenamePane; SwitchToMode "pane"; }
+  }
+
+  shared_among "session" "tmux" {
+    bind "d" { Detach; }
+  }
+
+  tmux {
+    bind "left" { MoveFocus "left"; SwitchToMode "normal"; }
+    bind "down" { MoveFocus "down"; SwitchToMode "normal"; }
+    bind "up" { MoveFocus "up"; SwitchToMode "normal"; }
+    bind "right" { MoveFocus "right"; SwitchToMode "normal"; }
+    bind "space" { NextSwapLayout; }
+    bind "\"" { NewPane "down"; SwitchToMode "normal"; }
+    bind "%" { NewPane "right"; SwitchToMode "normal"; }
+    bind "," { SwitchToMode "renametab"; }
+    bind "[" { SwitchToMode "scroll"; }
+    bind "Ctrl b" { Write 2; SwitchToMode "normal"; }
+    bind "c" { NewTab; SwitchToMode "normal"; }
+    bind "h" { MoveFocus "left"; SwitchToMode "normal"; }
+    bind "j" { MoveFocus "down"; SwitchToMode "normal"; }
+    bind "k" { MoveFocus "up"; SwitchToMode "normal"; }
+    bind "l" { MoveFocus "right"; SwitchToMode "normal"; }
+    bind "n" { GoToNextTab; SwitchToMode "normal"; }
+    bind "o" { FocusNextPane; }
+    bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
+    bind "z" { ToggleFocusFullscreen; SwitchToMode "normal"; }
+  }
+}
+
+ui {
+  pane_frames true
+  pane_frame_color "blue"
+  pane_frame_style "rounded"
+
+  status_bar {
+    enabled true
+    height 1
+    color_fg "#f7c6e7"
+    color_bg "#1b1226"
+    separator ""
+
+    left "  [session] [tab]"
+    center "  [pwd]"
+    right "🔋 [battery]🕓 [time]"
+  }
+}
+
+theme "custom"
+
+themes {
+  custom {
+    fg "#a1c4e7"
+    bg "#1b1226"
+    black "#090c0c"
+    red "#f38ba8"
+    green "#a6e3a1"
+    yellow "#f9e2af"
+    blue "#89b4fa"
+    magenta "#cba6f7"
+    cyan "#94e2d5"
+    white "#f7c6e7"
+    orange "#fab387"
+  }
+}
+
+plugins {
+  compact-bar location="zellij:compact-bar"
+  tab-bar location="zellij:tab-bar"
+  strider location="zellij:strider"
+  plugin-manager location="zellij:plugin-manager"
+}
+
+layout {
+  plugin location="compact-bar"
+  plugin location="tab-bar"
+}
+
+default_mode "normal"
+default_shell "zsh"
+mouse_mode true
+

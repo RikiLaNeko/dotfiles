@@ -64,3 +64,5 @@ eval "$(zoxide init --cmd cd zsh)"
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 export PATH="/home/dedsec/.bun/bin:$PATH"
+export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
+
