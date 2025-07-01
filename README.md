@@ -75,8 +75,7 @@ Ce dépôt centralise toutes mes configurations pour une installation simple, pr
 
 ```
 dotfiles/
-├── bash/
-│   └── .bashrc
+├──.zshrc
 ├── nvim/
 │   └── .config/nvim/init.vim
 ├── ghostty/
