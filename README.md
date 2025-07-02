@@ -1,114 +1,112 @@
-<h1 align="center">Dotfiles de <a href="https://github.com/RikiLaNeko">RikiLaNeko</a></h1>
+<!--
+README principal des dotfiles de RikiLaNeko
+Dernière mise à jour : 2025-07-02
+-->
+
+<h1 align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="60"/> Dotfiles de <a href="https://github.com/RikiLaNeko">RikiLaNeko</a></h1>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="80" alt="Logo"/>
-</p>
-<p align="center">
-  <b>Gestion élégante & modulaire de mes configurations Unix grâce à GNU Stow</b>
+  <b>Configuration Unix élégante, modulaire & intelligente</b>
   <br/>
-  <a href="https://nixos.org/">NixOS</a> • <a href="https://www.gnu.org/software/stow/">GNU Stow</a> • <a href="https://github.com/ghostty-org/ghostty">Ghostty</a>
+  <a href="https://nixos.org/">NixOS 25.05</a> • <a href="https://hyprland.org">Hyprland</a> • <a href="https://www.gnu.org/software/stow/">GNU Stow</a> • <a href="https://github.com/ghostty-org/ghostty">Ghostty</a> • <a href="https://github.com/catppuccin/catppuccin">Catppuccin</a>
+</p>
+
+<p align="center">
+  <a href="https://nixos.org"><img src="https://img.shields.io/badge/NixOS-25.05-blue?logo=nixos&logoColor=white&style=flat-square" /></a>
+  <a href="https://hyprland.org/"><img src="https://img.shields.io/badge/Hyprland-dynamic%20wm-9cf?logo=linux&style=flat-square"></a>
+  <a href="https://github.com/catppuccin/catppuccin"><img src="https://img.shields.io/badge/Theme-Catppuccin-F5C2E7?logo=paintpalette&logoColor=white&style=flat-square"></a>
+  <a href="https://github.com/RikiLaNeko/dotfiles/blob/main/LICENSE"><img src="https://img.shields.io/github/license/RikiLaNeko/dotfiles?style=flat-square"></a>
 </p>
 
 ---
 
-## ✨ Présentation
+## 📖 Table des matières
 
-Bienvenue sur mon repo de **dotfiles** !  
-Ce dépôt centralise toutes mes configurations pour une installation simple, propre et versionnée, grâce à [GNU Stow](https://www.gnu.org/software/stow/).
-
-- **Facile à déployer sur plusieurs machines**
-- **Compatible NixOS et autres distributions Unix**
-- **Inclut mes configs pour Ghostty, Hyprland, Wofi, etc.**
-- **Inspiré par la philosophie KISS : Keep It Simple & Stow!**
-
----
-
-## 🚀 Installation rapide
-
-1. **Clone ce dépôt où tu veux (typiquement dans `~/dotfiles`)** :
-   ```sh
-   git clone https://github.com/RikiLaNeko/dotfiles.git ~/dotfiles
-   cd ~/dotfiles
-   ```
-
-2. **Installe [GNU Stow](https://www.gnu.org/software/stow/) si besoin** :
-   ```sh
-   # Sous NixOS
-   nix-env -iA nixos.stow
-   # Sous Arch
-   sudo pacman -S stow
-   # Sous Debian/Ubuntu
-   sudo apt install stow
-   ```
-
-3. **Déploie les dotfiles dans ton `$HOME`** :
-   ```sh
-   stow bash
-   stow nvim
-   stow ghostty
-   stow hypr
-   # ...et tous les modules que tu veux !
-   ```
+- [Aperçu](#-aperçu)
+- [Diagramme de structure](#-diagramme-de-structure)
+- [Organisation & Workflow](#-organisation--workflow)
+- [Dotfiles inclus](#-dotfiles-inclus)
+- [Philosophie](#-philosophie)
+- [Pour aller plus loin](#-pour-aller-plus-loin)
+- [Crédits](#crédits)
 
 ---
 
-## 📦 Comment ça marche ? (Méthode Stow)
+## 🌟 Aperçu
 
-- Chaque dossier (ex : `bash`, `nvim`, `ghostty`) contient une arborescence qui sera liée dans ton `$HOME`.
-- Exemple :  
-  `~/dotfiles/bash/.bashrc` → sera symlinké automatiquement dans `~/.bashrc` grâce à Stow.
-- Tu peux stow/un-stow à volonté, sans polluer ton répertoire personnel.
+Ce repo regroupe **tous mes dotfiles Unix** pour un setup moderne, modulaire, esthétique et portable.  
+Optimisé pour :
 
----
-
-## 🛠️ Configs et outils inclus
-
-- **Ghostty** : Terminal moderne et rapide
-- **Hyprland** : WM dynamique sous Wayland
-- **Wofi** : Menu d’application stylé Catppuccin
-- **NixOS** : Des snippets pour la configuration système
-- **CSS** : Thèmes pour divers outils graphiques
-- ...et bien plus !
+- [NixOS 25.05](https://nixos.org/),
+- [Hyprland](https://hyprland.org/) (Wayland WM),
+- [GNU Stow](https://www.gnu.org/software/stow/),
+- [Catppuccin](https://catppuccin.com/) (thème global),
+- [Ghostty](https://github.com/ghostty-org/ghostty) (terminal nouvelle génération).
 
 ---
 
-## 📁 Exemple de structure
+## 🗺️ Diagramme de structure
 
-```
-dotfiles/
-├──.zshrc
-├── nvim/
-│   └── .config/nvim/init.vim
-├── ghostty/
-│   └── .config/ghostty/config
-├── hypr/
-│   └── .config/hypr/hyprland.conf
-└── ...
+```mermaid
+graph TD
+  A[dotfiles/] --> B[stow/]
+  B --> B1[zsh/.zshrc]
+  B --> B2[starship/.config/starship.toml]
+  B --> B3[nvim/.config/nvim/]
+  B --> B4[tmux/.config/tmux/tmux.conf]
+  B --> B5[ghostty/.config/ghostty/config]
+  B --> B6[hypr/.config/hypr/hyprland.conf]
+  A --> C[nixos/]
+  C --> C1[configuration.nix]
+  C --> C2[home.nix]
+  A --> D[scripts/]
 ```
 
 ---
 
-## 💡 Astuces
+## 💼 Organisation & Workflow
 
-- Tu veux tout stower d’un coup ?  
-  `stow .` (attention : vérifie que tout est prêt !)
-- Pour retirer une config :  
-  `stow -D nvim`
-- Besoin d’un shell script de lancement ou d’un hook NixOS ? Regarde dans le dossier `scripts/`.
+- Configs rangées par app dans `stow/`, prêtes à être symlinkées grâce à [GNU Stow](https://www.gnu.org/software/stow/).
+- Fichiers `.zshrc` ou autres en racine → `stow/zsh/.zshrc`
+- Configs XDG (`.config/`) → `stow/xxx/.config/xxx/`
+- Config NixOS et Home Manager dans `nixos/`
 
----
-
-## 🙏 Remerciements
-
-- [Catppuccin](https://catppuccin.com/) pour les thèmes
-- La communauté NixOS & GNU/Linux
-- Les auteurs d’outils open-source
+> Pour la gestion Stow, voir le [guide détaillé](./stow/README.md).
 
 ---
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" width="200"/>
-</p>
+## 🦄 Dotfiles inclus
 
-<p align="center">
-  <sub>Fait avec ❤️ par <a href="https://github.com/RikiLaNeko">RikiLaNeko</a></sub>
-</p>
+- **Zsh** : prompt moderne (Starship), plugins zinit, snippets, aliases, historique (Atuin), navigation rapide (zoxide)
+- **Starship** : prompt cross-shell stylé Catppuccin
+- **Neovim** : configuration Lua complète, plugins, ergonomie
+- **Tmux** : splits, status bar, plugins TPM, keybinds smart (migration future vers Zellij)
+- **Ghostty** : terminal nouvelle génération (Catppuccin, Iosevka)
+- **Hyprland** : WM dynamique, gaps, blur, launchers custom
+- **Waybar** : barres de status, quicklinks, intégration Ghostty/Nvim
+- **Scripts** : helpers, automatisation
+
+---
+
+## 💡 Philosophie
+
+- **Modularité** : chaque app indépendante, stow/unstow à volonté
+- **Esthétique** : Catppuccin partout, police Iosevka, cohérence UX
+- **Reproductibilité** : rebuild NixOS ou symlinks instantanés sur n’importe quel système
+- **Automatisation** : scripts, snippets, aliases, rebuild facile
+
+---
+
+## 🪄 Pour aller plus loin
+
+- [Gestion Stow (guide complet)](./stow/README.md)
+- [Configuration NixOS avancée](./nixos/README.md)
+
+---
+
+## 🙏 Crédits
+
+Merci à toutes les communautés open-source et à [Catppuccin](https://catppuccin.com/) pour l’inspiration visuelle.
+
+---
+
+> **Une question, une suggestion ? Ouvre une issue ou un PR !**
