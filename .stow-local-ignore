@@ -1,3 +1,6 @@
 .git
+nixos/
+sync-nixos.sh
 README.md
 sync-dotfiles.sh
+
