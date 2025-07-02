@@ -47,5 +47,8 @@
     # --- .NET ---
     dotnet-sdk            # SDK .NET pour C#, F#, etc.
 
+    # --- Global ---
+    asdf-vm #Extendable version manager
+
     ];
 }

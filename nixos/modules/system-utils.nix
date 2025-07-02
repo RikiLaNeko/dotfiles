@@ -18,6 +18,8 @@
     progress #Monitoring
     ipcalc #subnet calc
     magic-wormhole #P2P,E2E ecnrypted file transfer
+    tailscale
+    thefuck #The Fuck is a magnificent app
   ];
 }
 
