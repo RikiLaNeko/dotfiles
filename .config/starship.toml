@@ -1,33 +1,33 @@
 format = """
 [░▒▓](#a3aed2)\
-[  ](bg:#a3aed2 fg:#090c0c)\
+[  ](bg:#a3aed2 fg:#1b1226 bold)\
 $username\
-[](bg:#a1c4e7 fg:#a3aed2)\
+[](bg:#6a7dbd fg:#a3aed2)\
 $directory\
-[](fg:#a1c4e7 bg:#6a3d8b)\
+[](bg:#5b3e85 fg:#6a7dbd)\
 $git_branch\
 $git_status\
-[](fg:#6a3d8b bg:#2c1e3f)\
+[](bg:#2c1e3f fg:#5b3e85)\
 $nodejs\
 $rust\
 $golang\
 $java\
 $c\
 $php\
-[](fg:#2c1e3f bg:#1b1226)\
+[](bg:#1b1226 fg:#2c1e3f)\
 \n$character"""
 
 right_format = """$battery $time"""
 
 [username]
-style_user = "fg:#090c0c bg:#a3aed2 bold"
-style_root = "fg:#f38ba8 bg:#a3aed2 bold"
+style_user = "fg:#1b1226 bg:#a3aed2 bold"
+style_root = "fg:#1b1226 bg:#f38ba8 bold"
 format = '[ $user ]($style)'
 disabled = false
 show_always = true
 
 [directory]
-style = "fg:#f7c6e7 bg:#6a3d8b"
+style = "fg:#f7c6e7 bg:#6a7dbd"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -40,51 +40,51 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#2c1e3f"
-format = '[[ $symbol $branch ](fg:#a1c4e7 bg:#2c1e3f)]($style)'
+style = "fg:#f7c6e7 bg:#5b3e85"
+format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#2c1e3f"
-format = '[[($all_status$ahead_behind )](fg:#a1c4e7 bg:#2c1e3f)]($style)'
+style = "fg:#f7c6e7 bg:#5b3e85"
+format = '[ $all_status$ahead_behind ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#1b1226"
-format = '[[ $symbol ($version) ](fg:#a1c4e7 bg:#1b1226)]($style)'
+style = "fg:#a3aed2 bg:#2c1e3f"
+format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#1b1226"
-format = '[[ $symbol ($version) ](fg:#a1c4e7 bg:#1b1226)]($style)'
+style = "fg:#a3aed2 bg:#2c1e3f"
+format = '[ $symbol ($version) ]($style)'
 
 [golang]
 symbol = ""
-style = "bg:#1b1226"
-format = '[[ $symbol ($version) ](fg:#a1c4e7 bg:#1b1226)]($style)'
+style = "fg:#a3aed2 bg:#2c1e3f"
+format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = ""
-style = "bg:#1b1226"
-format = '[[ $symbol ($version) ](fg:#a1c4e7 bg:#1b1226)]($style)'
+style = "fg:#a3aed2 bg:#2c1e3f"
+format = '[ $symbol ($version) ]($style)'
 
 [c]
 symbol = ""
-style = "bg:#1b1226"
-format = '[[ $symbol ($version) ](fg:#a1c4e7 bg:#1b1226)]($style)'
+style = "fg:#a3aed2 bg:#2c1e3f"
+format = '[ $symbol ($version) ]($style)'
 
 [php]
 symbol = ""
-style = "bg:#1b1226"
-format = '[[ $symbol ($version) ](fg:#a1c4e7 bg:#1b1226)]($style)'
+style = "fg:#a3aed2 bg:#2c1e3f"
+format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
 time_format = "%R"
-style = "fg:#f7c6e7"
+style = "fg:#f7c6e7 bg:#5b3e85"
 format = '[🕓 $time]($style)'
 
 [character]
-success_symbol = "[⚔️](bold fg:#a3aed2)"
+success_symbol = "[🜏](bold fg:#a3aed2)"
 error_symbol = "[✗](bold fg:#f38ba8)"
 
 [battery]
@@ -92,7 +92,5 @@ disabled = false
 full_symbol = ""
 charging_symbol = "⚡"
 discharging_symbol = "🔋"
-format = '[ $symbol$percentage ](fg:#f7c6e7)'
-display = [
-  { style = "bold fg:#f7c6e7", threshold = 80 }
-]
+format = '[ $symbol$percentage ](fg:#f7c6e7 bg:#5b3e85)'
+display = [{ style = "bold fg:#f7c6e7 bg:#5b3e85", threshold = 80 }]
