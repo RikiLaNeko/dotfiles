@@ -1,114 +1,153 @@
-<h1 align="center">Dotfiles de <a href="https://github.com/RikiLaNeko">RikiLaNeko</a></h1>
+<!--
+README Stow · dotfiles de RikiLaNeko
+Dernière mise à jour : 2025-07-02
+-->
+
+<h1 align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="55"/> Dotfiles & <span style="color:#6a3d8b;">GNU Stow</span></h1>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="80" alt="Logo"/>
+  <b>Symlinks propres, configs modulaires, installation instantanée</b>
 </p>
+
 <p align="center">
-  <b>Gestion élégante & modulaire de mes configurations Unix grâce à GNU Stow</b>
-  <br/>
-  <a href="https://nixos.org/">NixOS</a> • <a href="https://www.gnu.org/software/stow/">GNU Stow</a> • <a href="https://github.com/ghostty-org/ghostty">Ghostty</a>
+  <a href="https://www.gnu.org/software/stow/"><img src="https://img.shields.io/badge/Stow-Portable-green?style=flat-square&logo=gnu"></a>
+  <a href="https://catppuccin.com/"><img src="https://img.shields.io/badge/Theme-Catppuccin-F5C2E7?logo=paintpalette&logoColor=white&style=flat-square"></a>
 </p>
 
 ---
 
-## ✨ Présentation
+## 📖 Sommaire
 
-Bienvenue sur mon repo de **dotfiles** !  
-Ce dépôt centralise toutes mes configurations pour une installation simple, propre et versionnée, grâce à [GNU Stow](https://www.gnu.org/software/stow/).
-
-- **Facile à déployer sur plusieurs machines**
-- **Compatible NixOS et autres distributions Unix**
-- **Inclut mes configs pour Ghostty, Hyprland, Wofi, etc.**
-- **Inspiré par la philosophie KISS : Keep It Simple & Stow!**
-
----
-
-## 🚀 Installation rapide
-
-1. **Clone ce dépôt où tu veux (typiquement dans `~/dotfiles`)** :
-   ```sh
-   git clone https://github.com/RikiLaNeko/dotfiles.git ~/dotfiles
-   cd ~/dotfiles
-   ```
-
-2. **Installe [GNU Stow](https://www.gnu.org/software/stow/) si besoin** :
-   ```sh
-   # Sous NixOS
-   nix-env -iA nixos.stow
-   # Sous Arch
-   sudo pacman -S stow
-   # Sous Debian/Ubuntu
-   sudo apt install stow
-   ```
-
-3. **Déploie les dotfiles dans ton `$HOME`** :
-   ```sh
-   stow bash
-   stow nvim
-   stow ghostty
-   stow hypr
-   # ...et tous les modules que tu veux !
-   ```
+- [Pourquoi Stow ?](#pourquoi-stow)
+- [Diagramme](#diagramme)
+- [Règles de structure](#règles-de-structure)
+- [Guide d’utilisation pas-à-pas](#guide-dutilisation-pas-à-pas)
+- [Exemples concrets](#exemples-concrets)
+- [Bonnes pratiques & astuces](#bonnes-pratiques--astuces)
+- [FAQ](#faq)
+- [Liens utiles](#liens-utiles)
 
 ---
 
-## 📦 Comment ça marche ? (Méthode Stow)
+## 🌈 Pourquoi Stow ?
 
-- Chaque dossier (ex : `bash`, `nvim`, `ghostty`) contient une arborescence qui sera liée dans ton `$HOME`.
-- Exemple :  
-  `~/dotfiles/bash/.bashrc` → sera symlinké automatiquement dans `~/.bashrc` grâce à Stow.
-- Tu peux stow/un-stow à volonté, sans polluer ton répertoire personnel.
-
----
-
-## 🛠️ Configs et outils inclus
-
-- **Ghostty** : Terminal moderne et rapide
-- **Hyprland** : WM dynamique sous Wayland
-- **Wofi** : Menu d’application stylé Catppuccin
-- **NixOS** : Des snippets pour la configuration système
-- **CSS** : Thèmes pour divers outils graphiques
-- ...et bien plus !
+- **Symlinks modulaires** : chaque app indépendante, déployable/supprimable proprement.
+- **Portabilité** : 1 commande pour tout retrouver sur une nouvelle machine.
+- **Git-friendly** : tout est versionné et lisible.
 
 ---
 
-## 📁 Exemple de structure
+## 🗺️ Diagramme
 
-```
-dotfiles/
-├──.zshrc
-├── nvim/
-│   └── .config/nvim/init.vim
-├── ghostty/
-│   └── .config/ghostty/config
-├── hypr/
-│   └── .config/hypr/hyprland.conf
-└── ...
+```mermaid
+graph TD
+  S[stow/] --> S1[zsh/.zshrc]
+  S --> S2[starship/.config/starship.toml]
+  S --> S3[nvim/.config/nvim/]
+  S --> S4[tmux/.config/tmux/tmux.conf]
+  S --> S5[ghostty/.config/ghostty/config]
+  S --> S6[hypr/.config/hypr/hyprland.conf]
 ```
 
 ---
 
-## 💡 Astuces
+## 🏗️ Règles de structure
 
-- Tu veux tout stower d’un coup ?  
-  `stow .` (attention : vérifie que tout est prêt !)
-- Pour retirer une config :  
-  `stow -D nvim`
-- Besoin d’un shell script de lancement ou d’un hook NixOS ? Regarde dans le dossier `scripts/`.
+- **Fichier attendu à la racine** :  
+  → Ex : `.zshrc` → `stow/zsh/.zshrc`
+- **Dans .config/** :  
+  → Ex : `starship.toml` → `stow/starship/.config/starship.toml`
+  → Ex : `nvim` → `stow/nvim/.config/nvim/`
+- **Multi-fichiers** :  
+  Organise dans `.config/` (ex : Ghostty, Hyprland, tmux...)
 
----
-
-## 🙏 Remerciements
-
-- [Catppuccin](https://catppuccin.com/) pour les thèmes
-- La communauté NixOS & GNU/Linux
-- Les auteurs d’outils open-source
+> **Astuce** : la structure du sous-dossier doit toujours refléter le chemin exact final dans `$HOME`.
 
 ---
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" width="200"/>
-</p>
+## 🛠️ Guide d’utilisation pas-à-pas
 
-<p align="center">
-  <sub>Fait avec ❤️ par <a href="https://github.com/RikiLaNeko">RikiLaNeko</a></sub>
-</p>
+### 1. Cloner le repo
+
+```bash
+git clone https://github.com/RikiLaNeko/dotfiles.git
+cd dotfiles/stow
+```
+
+### 2. Déployer tout (recommandé)
+
+```bash
+stow .
+```
+
+> Cela symlinkera tous les dotfiles présents dans chaque sous-dossier vers ta `$HOME`, de façon propre.
+
+### 3. Déployer une config spécifique
+
+```bash
+stow zsh         # crée ~/.zshrc
+stow starship    # crée ~/.config/starship.toml
+stow nvim        # crée ~/.config/nvim/
+stow ghostty     # crée ~/.config/ghostty/config
+```
+
+### 4. Retirer une config
+
+```bash
+stow -D tmux     # supprime le symlink ~/.config/tmux
+```
+
+### 5. Ajouter une nouvelle app
+
+```bash
+mkdir -p stow/maapp/.config/maapp/
+cp <monfichier> stow/maapp/.config/maapp/
+stow maapp
+```
+
+---
+
+## 📚 Exemples concrets
+
+- **zsh**
+  - `stow/zsh/.zshrc` → `~/.zshrc`
+  - Plugins/snippets/aliases gérés dans le fichier, voir la section “snippets” du README principal.
+- **starship**
+  - `stow/starship/.config/starship.toml` → `~/.config/starship.toml`
+- **ghostty**
+  - `stow/ghostty/.config/ghostty/config` → `~/.config/ghostty/config`
+- **hyprland**
+  - `stow/hypr/.config/hypr/hyprland.conf` → `~/.config/hypr/hyprland.conf`
+
+---
+
+## 💎 Bonnes pratiques & astuces
+
+- **Vérifie l’existant avant de stow** (sauvegarde d’anciens fichiers si besoin).
+- **Unstow avant de supprimer un dossier** (sinon symlinks cassés).
+- **Stow fonctionne aussi sous macOS**.
+- **Commit régulier** = rollback facile.
+
+---
+
+## ❓ FAQ
+
+**Q : Puis-je stow tout d’un coup ?**  
+A : Oui, `stow .` va tout symlinker.
+
+**Q : Que faire si un fichier existe déjà ?**  
+A : Déplace-le/supprime-le ou utilise `stow -D` pour désinstaller proprement avant.
+
+**Q : Et pour une gestion full déclarative ?**  
+A : Regarde la branche NixOS de ce repo, ou découvre Home Manager.
+
+---
+
+## 🔗 Liens utiles
+
+- [GNU Stow](https://www.gnu.org/software/stow/)
+- [Catppuccin](https://catppuccin.com/)
+- [Hyprland](https://hyprland.org/)
+
+---
+
+> **Un problème, une question ? Ouvre une issue !**
