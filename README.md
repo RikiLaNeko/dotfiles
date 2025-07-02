@@ -1,114 +1,163 @@
-<h1 align="center">Dotfiles de <a href="https://github.com/RikiLaNeko">RikiLaNeko</a></h1>
+<!--
+README NixOS · dotfiles de RikiLaNeko
+Dernière mise à jour : 2025-07-02
+-->
+
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="55"/>
+  <span style="color:#7aa2f7;font-weight:bold;">NixOS 25.05</span> & <span style="color:#f5c2e7;font-weight:bold;">Hyprland</span> - <span style="color:#a6e3a1;">Configuration avancée</span>
+</h1>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="80" alt="Logo"/>
-</p>
-<p align="center">
-  <b>Gestion élégante & modulaire de mes configurations Unix grâce à GNU Stow</b>
+  <b>Déclaratif, modulaire, reproductible – pour un OS Unix à ton image</b>
   <br/>
-  <a href="https://nixos.org/">NixOS</a> • <a href="https://www.gnu.org/software/stow/">GNU Stow</a> • <a href="https://github.com/ghostty-org/ghostty">Ghostty</a>
+  <a href="https://nixos.org"><img src="https://img.shields.io/badge/NixOS-25.05-blue?logo=nixos&logoColor=white&style=flat-square" /></a>
+  <a href="https://hyprland.org/"><img src="https://img.shields.io/badge/Hyprland-Wayland%20WM-9cf?logo=linux&style=flat-square"></a>
+  <a href="https://catppuccin.com/"><img src="https://img.shields.io/badge/Theme-Catppuccin-F5C2E7?logo=paintpalette&logoColor=white&style=flat-square"></a>
 </p>
 
 ---
 
-## ✨ Présentation
+## 📖 Sommaire
 
-Bienvenue sur mon repo de **dotfiles** !  
-Ce dépôt centralise toutes mes configurations pour une installation simple, propre et versionnée, grâce à [GNU Stow](https://www.gnu.org/software/stow/).
-
-- **Facile à déployer sur plusieurs machines**
-- **Compatible NixOS et autres distributions Unix**
-- **Inclut mes configs pour Ghostty, Hyprland, Wofi, etc.**
-- **Inspiré par la philosophie KISS : Keep It Simple & Stow!**
-
----
-
-## 🚀 Installation rapide
-
-1. **Clone ce dépôt où tu veux (typiquement dans `~/dotfiles`)** :
-   ```sh
-   git clone https://github.com/RikiLaNeko/dotfiles.git ~/dotfiles
-   cd ~/dotfiles
-   ```
-
-2. **Installe [GNU Stow](https://www.gnu.org/software/stow/) si besoin** :
-   ```sh
-   # Sous NixOS
-   nix-env -iA nixos.stow
-   # Sous Arch
-   sudo pacman -S stow
-   # Sous Debian/Ubuntu
-   sudo apt install stow
-   ```
-
-3. **Déploie les dotfiles dans ton `$HOME`** :
-   ```sh
-   stow bash
-   stow nvim
-   stow ghostty
-   stow hypr
-   # ...et tous les modules que tu veux !
-   ```
+- [Introduction](#introduction)
+- [Diagramme & Structure](#diagramme--structure)
+- [Utilisation rapide](#utilisation-rapide)
+- [Workflow avancé (Flakes & Home Manager)](#workflow-avancé-flakes--home-manager)
+- [Modules personnalisés & astuces](#modules-personnalisés--astuces)
+- [Bonnes pratiques](#bonnes-pratiques)
+- [Roadmap & évolutions](#roadmap--évolutions)
+- [Liens utiles](#liens-utiles)
 
 ---
 
-## 📦 Comment ça marche ? (Méthode Stow)
+## 🌟 Introduction
 
-- Chaque dossier (ex : `bash`, `nvim`, `ghostty`) contient une arborescence qui sera liée dans ton `$HOME`.
-- Exemple :  
-  `~/dotfiles/bash/.bashrc` → sera symlinké automatiquement dans `~/.bashrc` grâce à Stow.
-- Tu peux stow/un-stow à volonté, sans polluer ton répertoire personnel.
+Ce dossier regroupe **toute ma configuration NixOS** :
 
----
-
-## 🛠️ Configs et outils inclus
-
-- **Ghostty** : Terminal moderne et rapide
-- **Hyprland** : WM dynamique sous Wayland
-- **Wofi** : Menu d’application stylé Catppuccin
-- **NixOS** : Des snippets pour la configuration système
-- **CSS** : Thèmes pour divers outils graphiques
-- ...et bien plus !
+- Système complet, reproductible à l’identique sur toute machine.
+- Setup design & moderne : Hyprland (Wayland), Ghostty, Catppuccin, Waybar...
+- Gestion modulaire : configuration, modules, scripts, thèmes, hardware.
+- **Vers le full Nix** : Home Manager et Flakes intégrés ou en transition.
 
 ---
 
-## 📁 Exemple de structure
+## 🗺️ Diagramme & Structure
+
+```mermaid
+graph TD
+  N[nixos/] --> N1[configuration.nix]
+  N --> N2[hardware-configuration.nix]
+  N --> N3[home.nix (Home Manager)]
+  N --> N4[modules/]
+  N --> N5[themes/]
+  N --> N6[secrets/]
+```
+
+**Structure type** :
 
 ```
-dotfiles/
-├──.zshrc
-├── nvim/
-│   └── .config/nvim/init.vim
-├── ghostty/
-│   └── .config/ghostty/config
-├── hypr/
-│   └── .config/hypr/hyprland.conf
+nixos/
+├── configuration.nix            # Config système principale
+├── hardware-configuration.nix   # Généré par NixOS
+├── home.nix                     # Config utilisateur Home Manager (ou standalone)
+├── modules/                     # Modules persos (wm, terminal, apps…)
+├── themes/                      # Thèmes Catppuccin, autres
+├── secrets/                     # Secrets, tokens, variables privées
 └── ...
 ```
 
 ---
 
-## 💡 Astuces
+## ⚡ Utilisation rapide
 
-- Tu veux tout stower d’un coup ?  
-  `stow .` (attention : vérifie que tout est prêt !)
-- Pour retirer une config :  
-  `stow -D nvim`
-- Besoin d’un shell script de lancement ou d’un hook NixOS ? Regarde dans le dossier `scripts/`.
+### 1. Cloner et positionner la config
+
+```bash
+git clone https://github.com/RikiLaNeko/dotfiles.git
+cd dotfiles/nixos
+```
+
+### 2. Adapter les fichiers
+
+- Change `hostName`, user, hardware, chemins, etc. dans `configuration.nix`.
+- Vérifie la section `imports` pour activer tes modules.
+
+### 3. Build & switch (classique)
+
+```bash
+sudo nixos-rebuild switch -I nixos-config=configuration.nix
+```
+
+### 4. Avec flakes (recommandé)
+
+- Active les flakes dans `/etc/nixos/flake.nix` ou au root du repo.
+- Commande build :
+
+  ```bash
+  sudo nixos-rebuild switch --flake .#
+  ```
+
+### 5. Home Manager (intégré ou standalone)
+
+- Si intégré : `home.nix` importé dans `configuration.nix`.
+- Sinon en standalone :
+
+  ```bash
+  home-manager switch --flake .#
+  ```
 
 ---
 
-## 🙏 Remerciements
+## 🔥 Workflow avancé (Flakes & Home Manager)
 
-- [Catppuccin](https://catppuccin.com/) pour les thèmes
-- La communauté NixOS & GNU/Linux
-- Les auteurs d’outils open-source
+- **Flakes** : portabilité, versionning, canaux, reproductibilité totale.
+- **Home Manager** : tout ce qui touche l’utilisateur (dotfiles, apps, shell, themes) géré en pur Nix.
+- **Modules persos** : pour factoriser la config (ex : module `hyprland`, `ghostty`, `waybar`, etc).
 
 ---
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" width="200"/>
-</p>
+## 🧩 Modules personnalisés & astuces
 
-<p align="center">
-  <sub>Fait avec ❤️ par <a href="https://github.com/RikiLaNeko">RikiLaNeko</a></sub>
-</p>
+- **modules/** : factorise ta config pour chaque app/service (ex: un module par WM, terminal, environnement graphique…).
+- **themes/** : partage de palettes, Catppuccin, templates pour cohérence visuelle.
+- **secrets/** : variables privées, fichiers sensibles (à gitignore !)
+- **scripts/** : hooks, helpers, automation post-install.
+
+> **Astuce** : Commente chaque option, isole tes variables, et split ta config pour la maintenance future.
+
+---
+
+## 💎 Bonnes pratiques
+
+- Versionne tout (sauf secrets)
+- Ne laisse rien de critique en dehors de la config
+- Préfère Home Manager pour les dotfiles utilisateur
+- Utilise les flakes pour la portabilité et la reproductibilité
+- Modifie tes modules plutôt que des gros fichiers monolithiques
+
+---
+
+## 🚀 Roadmap & évolutions
+
+- [ ] Migration complète vers Home Manager pour tous les dotfiles utilisateur
+- [ ] Remplacer tmux par **Zellij** (multiplexer terminal nouvelle gen)
+- [ ] Factoriser tous les modules (Hyprland, Ghostty, Waybar, etc)
+- [ ] Flakes et canaux personnalisés
+- [ ] Scripts onboarding automatique
+- [ ] Tests CI sur la config Nix
+- [ ] Documentation approfondie (EN/FR, guides spécifiques)
+
+---
+
+## 🔗 Liens utiles
+
+- [NixOS](https://nixos.org/)
+- [Hyprland](https://hyprland.org/)
+- [Home Manager](https://nix-community.github.io/home-manager/index.html)
+- [Catppuccin pour Nix](https://github.com/catppuccin/nix)
+- [Zellij](https://zellij.dev/)
+- [Nix Flakes](https://nixos.wiki/wiki/Flakes)
+
+---
+
+> **Besoin d’aide, envie de contribuer ou de discuter config ? Ouvre une issue ou un PR !**
