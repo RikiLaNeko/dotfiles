@@ -19,10 +19,40 @@ zinit light Aloxaf/fzf-tab
 # Add in snippets
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
+zinit snippet OMZP::git-auto-fetch
+zinit snippet OMZP::git-commit
+zinit snippet OMZP::gitignore
+zinit snippet OMZP::gh
 zinit snippet OMZP::sudo
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
+zinit snippet OMZP::bun
+zinit snippet OMZP::docker
+zinit snippet OMZP::docker-compose
+zinit snippet OMZP::dotnet
+zinit snippet OMZP::eza
+zinit snippet OMZP::fancy-ctrl-z
+zinit snippet OMZP::fzf
+zinit snippet OMZP::gem
+zinit snippet OMZP::golang
+zinit snippet OMZP::gradle
+zinit snippet OMZP::laravel5
+zinit snippet OMZP::minikube
+zinit snippet OMZP::ruby
+zinit snippet OMZP::rust
+zinit snippet OMZP::rsync
+zinit snippet OMZP::ssh
+zinit snippet OMZP::ssh-agent
+zinit snippet OMZP::symfony6
+zinit snippet OMZP::tailscale
+zinit snippet OMZP::thefuck
+zinit snippet OMZP::tldr
+zinit snippet OMZP::tmux
+zinit snippet OMZP::vi-mode
+zinit snippet OMZP::virtualenv
+zinit snippet OMZP::web-search
+
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -49,12 +79,18 @@ alias ping=mtr
 alias blame="systemd-analyze blame"
 alias cchain="systemd-analyze critical-chain"
 alias ps=procs
-alias rm=shred
+alias rmf=shred
 alias pb-status='ps aux | grep protonmail-bridge'
 
 
+#PATH
+export PATH="/home/dedsec/.bun/bin:$PATH"
+
+#Config 
 export EDITOR=nvim
 export VISUAL=yazi
+export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
+
 
 # Initialisation de Starship pour un prompt rapide et personnalisable
 eval "$(starship init zsh)"
@@ -65,12 +101,8 @@ eval "$(atuin init zsh)"
 # Initialisation de zoxide
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-
-
-
+eval "$(thefuck --alias)"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
-export PATH="/home/dedsec/.bun/bin:$PATH"
-export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
 
