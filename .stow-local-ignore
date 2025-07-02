@@ -1,1 +1,3 @@
 .git
+nixos/
+sync-nixos.sh
