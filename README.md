@@ -1,25 +1,12 @@
-<h1 align="center">
+<h1 align="center" style="display:flex;justify-content:center;align-items:center;gap:10px;">
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="55"/>
   Dotfiles &amp; <span style="color:#6a3d8b;">GNU Stow</span>
-</h1>
-<p align="center" style="margin-top:-1em;font-size:1.6em;font-weight:bold;">
-  <span style="letter-spacing:0.08em;">
-    <span style="color:#f5c2e7;">d</span>
-    <span style="color:#cba6f7;">e</span>
-    &nbsp;
-    <span style="color:#f5c2e7;">R</span>
-    <span style="color:#cba6f7;">i</span>
-    <span style="color:#89b4fa;">k</span>
-    <span style="color:#94e2d5;">i</span>
-    <span style="color:#a6e3a1;">L</span>
-    <span style="color:#f9e2af;">a</span>
-    <span style="color:#fab387;">N</span>
-    <span style="color:#eba0ac;">e</span>
-    <span style="color:#74c7ec;">k</span>
-    <span style="color:#f38ba8;">o</span>
+  <span style="margin-left:14px;font-size:1.1em;font-weight:bold;vertical-align:middle;">
+    <span style="color:#f5c2e7;">d</span><span style="color:#cba6f7;">e</span>
+    <span> </span>
+    <span style="color:#f5c2e7;">R</span><span style="color:#cba6f7;">i</span><span style="color:#89b4fa;">k</span><span style="color:#94e2d5;">i</span><span style="color:#a6e3a1;">L</span><span style="color:#f9e2af;">a</span><span style="color:#fab387;">N</span><span style="color:#eba0ac;">e</span><span style="color:#74c7ec;">k</span><span style="color:#f38ba8;">o</span>
   </span>
-</p>
-
+</h1>
 <p align="center">
   <b>Symlinks propres, configs modulaires, installation instantanée</b>
 </p>
@@ -34,6 +21,11 @@
   <a href="https://starship.rs/"><img src="https://img.shields.io/badge/Starship-fast-7d5fff?logo=starship&style=flat-square"></a>
   <a href="https://catppuccin.com/"><img src="https://img.shields.io/badge/Theme-Catppuccin-F5C2E7?logo=paintpalette&logoColor=white&style=flat-square"></a>
 </p>
+
+---
+
+> Merci à <b>tasiaiso</b> de m’avoir fait découvrir NixOS !  
+> Et à la <a href="https://catppuccin.com/">communauté Catppuccin</a> pour le style et l’inspi !
 
 ---
 
@@ -108,12 +100,6 @@ stow zsh
 - **Test de configs sans douleur** : j’active/je vire ce que je veux.
 - **Confort de travail** : tout est pensé pour être rapide, lisible, joli (merci Catppuccin !)
 - **Pas de magie noire** : pas de dépendances bizarres, tout est documenté.
-
----
-
-<p align="center">
-  <i>Merci à la <a href="https://catppuccin.com/">communauté Catppuccin</a> pour le style et l’inspi !</i>
-</p>
 
 ---
 
