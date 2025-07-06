@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     neovim # Editeur de texte puissant
+    obsidian #Alternaive auto gérée a notion
     
 
     #IDEs

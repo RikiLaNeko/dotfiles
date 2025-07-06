@@ -9,16 +9,18 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./modules/archives.nix
-      ./modules/editors.nix
       ./modules/communication.nix
-      ./modules/git.nix
       ./modules/devtools.nix
+      ./modules/editors.nix
+      ./modules/fun.nix
+      ./modules/git.nix
       ./modules/hyprland.nix
-      ./modules/terminal-utils.nix
-      ./modules/system-utils.nix
+      ./modules/ia.nix
       ./modules/multimedia.nix
       ./modules/network.nix
-      ./modules/fun.nix
+      ./modules/recording.nix
+      ./modules/system-utils.nix
+      ./modules/terminal-utils.nix
     ];
 
   # Bootloader.

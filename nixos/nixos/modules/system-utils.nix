@@ -18,8 +18,20 @@
     progress #Monitoring
     ipcalc #subnet calc
     magic-wormhole #P2P,E2E ecnrypted file transfer
-    tailscale
     thefuck #The Fuck is a magnificent app
   ];
+
+  services = {
+    syncthing = {
+        enable = true;
+        group = "users";
+        user = "dedesec";
+        dataDir = "/home/dedsec/Syncthing";
+        configDir = "/home/dedsec/Syncthing/.config/Syncthing";
+    };
+    tailscale = {
+        enable = true;
+      };
+};
 }
 

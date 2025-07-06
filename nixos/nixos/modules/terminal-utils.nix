@@ -27,8 +27,6 @@
     tshark # Montioring
     termshark #tshark TUI
     moreutils #Get more utils (If you didnt understood you stoopid)
-    asciinema #Record terminal
-    asciinema-agg #Convert terminal vid into GIF
   ];
 }
 

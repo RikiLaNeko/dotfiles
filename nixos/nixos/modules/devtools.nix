@@ -49,6 +49,7 @@
 
     # --- Global ---
     asdf-vm #Extendable version manager
+    dbeaver-bin #Visualise DB
 
     ];
 }
