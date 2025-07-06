@@ -19,6 +19,7 @@
     ipcalc #subnet calc
     magic-wormhole #P2P,E2E ecnrypted file transfer
     thefuck #The Fuck is a magnificent app
+    swaylock-effects
   ];
 
   services = {
@@ -31,7 +32,12 @@
     };
     tailscale = {
         enable = true;
+    };
+    seatd={
+        enable = true;
       };
-};
+  };
+
+security.pam.services.swaylock.enable = true;
 }
 

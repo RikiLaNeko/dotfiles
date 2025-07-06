@@ -50,6 +50,13 @@
     # --- Global ---
     asdf-vm #Extendable version manager
     dbeaver-bin #Visualise DB
+      
+    # --- Bibliothèques pour GUI ---
+    gtk3          # libgtk-3
+    webkitgtk     # libwebkit
 
+    # --- Outils optionnels pour packaging ---
+    nsis          # créateur d'installeurs Windows
+    upx           # compresseur d'exécutables
     ];
 }

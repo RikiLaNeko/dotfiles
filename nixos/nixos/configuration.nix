@@ -123,7 +123,7 @@
   users.users.dedsec = {
     isNormalUser = true;
     description = "dedsec";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" "libvirtd" "seat"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
