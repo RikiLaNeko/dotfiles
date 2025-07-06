@@ -6,6 +6,7 @@
     unp
     p7zip
     unzip
+    unrar
   ];
 }
 

@@ -10,6 +10,7 @@
     protonmail-bridge-gui # GUI pour Protonmail Bridge
     teams-for-linux # Microsoft Teams sur Linux
     simplex-chat-desktop # Messagerie sécurisée P2P
+    protonmail-desktop #Desktop application for Mail and Calendar, made with Electron
   ];
 }
 

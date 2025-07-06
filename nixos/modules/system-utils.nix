@@ -18,8 +18,26 @@
     progress #Monitoring
     ipcalc #subnet calc
     magic-wormhole #P2P,E2E ecnrypted file transfer
-    tailscale
     thefuck #The Fuck is a magnificent app
+    swaylock-effects
   ];
+
+  services = {
+    syncthing = {
+        enable = true;
+        group = "users";
+        user = "dedsec";
+        dataDir = "/home/dedsec/Syncthing";
+        configDir = "/home/dedsec/Syncthing/.config/Syncthing";
+    };
+    tailscale = {
+        enable = true;
+    };
+    seatd={
+        enable = true;
+      };
+  };
+
+security.pam.services.swaylock.enable = true;
 }
 
