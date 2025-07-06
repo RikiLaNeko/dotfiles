@@ -80,8 +80,11 @@ alias blame="systemd-analyze blame"
 alias cchain="systemd-analyze critical-chain"
 alias ps=procs
 alias rmf=shred
+alias find="fd --color=always"
+alias ll="eza --icons=always --color --long --group-directories-first"
+alias f=fuck
 alias pb-status='ps aux | grep protonmail-bridge'
-
+alias top=btop
 
 #PATH
 export PATH="/home/dedsec/.bun/bin:$PATH"
