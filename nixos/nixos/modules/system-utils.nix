@@ -25,7 +25,7 @@
     syncthing = {
         enable = true;
         group = "users";
-        user = "dedesec";
+        user = "dedsec";
         dataDir = "/home/dedsec/Syncthing";
         configDir = "/home/dedsec/Syncthing/.config/Syncthing";
     };
