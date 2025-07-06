@@ -2,6 +2,24 @@
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="55"/>
   Dotfiles &amp; <span style="color:#6a3d8b;">GNU Stow</span>
 </h1>
+<p align="center" style="margin-top:-1em;font-size:1.6em;font-weight:bold;">
+  <span style="letter-spacing:0.08em;">
+    <span style="color:#f5c2e7;">d</span>
+    <span style="color:#cba6f7;">e</span>
+    &nbsp;
+    <span style="color:#f5c2e7;">R</span>
+    <span style="color:#cba6f7;">i</span>
+    <span style="color:#89b4fa;">k</span>
+    <span style="color:#94e2d5;">i</span>
+    <span style="color:#a6e3a1;">L</span>
+    <span style="color:#f9e2af;">a</span>
+    <span style="color:#fab387;">N</span>
+    <span style="color:#eba0ac;">e</span>
+    <span style="color:#74c7ec;">k</span>
+    <span style="color:#f38ba8;">o</span>
+  </span>
+</p>
+
 <p align="center">
   <b>Symlinks propres, configs modulaires, installation instantanée</b>
 </p>
