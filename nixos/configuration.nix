@@ -13,6 +13,7 @@
       ./modules/devtools.nix
       ./modules/editors.nix
       ./modules/fun.nix
+      ./modules/gamedev.nix
       ./modules/git.nix
       ./modules/hyprland.nix
       ./modules/ia.nix

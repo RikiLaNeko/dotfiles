@@ -3,7 +3,7 @@
 set -e
 
 echo "Copie de /etc/nixos dans ./nixos (avec sudo)..."
-sudo cp -r /etc/nixos ./nixos
+sudo cp -r /etc/nixos/. ./nixos
 
 echo "Changement de propriétaire et permissions dans ./nixos..."
 sudo chown -R $(whoami):$(id -gn) ./nixos
