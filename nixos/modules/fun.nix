@@ -12,6 +12,7 @@
     winetricks
     dxvk
     prismlauncher
+    calibre
   ];
 }
 

@@ -20,6 +20,7 @@
     magic-wormhole #P2P,E2E ecnrypted file transfer
     thefuck #The Fuck is a magnificent app
     swaylock-effects
+    libnotify
   ];
 
   services = {
