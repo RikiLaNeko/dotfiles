@@ -3,3 +3,4 @@ README.md
 sync-dotfiles.sh
 sync-nixos.sh
 nixos
+systemd

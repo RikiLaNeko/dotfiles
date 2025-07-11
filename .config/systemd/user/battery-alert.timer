@@ -1,0 +1,11 @@
+[Unit]
+Description=Lancer le script toutes les minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+Unit=battery-alert.service
+
+[Install]
+WantedBy=timers.target
+

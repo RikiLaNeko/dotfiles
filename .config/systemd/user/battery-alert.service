@@ -1,0 +1,7 @@
+[Unit]
+Description=Alerte batterie faible
+
+[Service]
+Type=oneshot
+ExecStart=/home/dedsec/dotfiles/.config/hypr/scripts/notify_battery.sh
+
