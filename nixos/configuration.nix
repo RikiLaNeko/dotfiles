@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./modules/archives.nix
       ./modules/communication.nix
+      ./modules/cybersecurity.nix
       ./modules/devtools.nix
       ./modules/editors.nix
       ./modules/fun.nix
@@ -229,7 +230,7 @@
   # networking.firewall.enable = false;
   
   environment.variables = {
-    TERMINAL = "ghostty";
+    TERM = "ghostty";
     DEFAULT_TERM = "ghostty";
     EDITOR= "nvim";
   };

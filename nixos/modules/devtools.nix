@@ -6,15 +6,21 @@
     # --- Développement Java ---
     jdk21 # OpenJDK 21
     kotlin # Langage JVM moderne
+    ktor-cli #Like spring boot but for kotlin
+    hibernate #IDK why when i have spring, but maybe to try?
     spring-boot-cli # Outils Spring Boot
     maven # Outil de build Java
     gradle # Build tool moderne
+    scenebuilder
+
 
     # --- Développement JavaScript ---
     bun # Runtime JS rapide
     nodejs #Nodejs
+    nest-cli
 
     # --- C/C++ ---
+    gcc   # Another LLVM C/C++
     clang # Compilateur LLVM C/C++
     cmake # Générateur de build C/C++
     just # Command runner simple
@@ -46,6 +52,23 @@
 
     # --- .NET ---
     dotnet-sdk            # SDK .NET pour C#, F#, etc.
+    mono
+
+    # --- Erlang ---
+    erlang # Programming language used for massively scalable soft real-time systems
+    gleam # Statically typed language for the Erlang VM
+    beam26Packages.elixir
+
+    # --- zig --- 
+    zig
+
+    # --- haskell --- 
+    haskell-ci
+
+    # --- Lua --- 
+    lua
+    love
+
 
     # --- Global ---
     asdf-vm #Extendable version manager
@@ -59,4 +82,6 @@
     nsis          # créateur d'installeurs Windows
     upx           # compresseur d'exécutables
     ];
+
+
 }

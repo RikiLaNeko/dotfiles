@@ -6,7 +6,7 @@
     obsidian #Alternaive auto gérée a notion
     
 
-    #IDEs
+    #IDEs (fancy, maybe gonna delete? Like just nvim route maybe)
     jetbrains.webstorm #Web IDE from JetBrains
     jetbrains.phpstorm #PHP IDE from JetBrains
     jetbrains.rust-rover #Rust IDE from JetBrains
@@ -18,6 +18,8 @@
     jetbrains.gateway #Remote development for JetBrains products
     jetbrains.clion #C/C++ IDE from JetBrains
     jetbrains-toolbox #Jetbrains Toolbox
+
+    vscodium-fhs #Better than vsCoduim on my machine
   ];
 }
 
