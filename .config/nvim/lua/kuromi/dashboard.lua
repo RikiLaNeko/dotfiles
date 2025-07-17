@@ -17,6 +17,7 @@ dashboard.section.buttons.val = {
   dashboard.button("n", "  New file", ":ene | startinsert<CR>"),
   dashboard.button("s", "  Restore session", ":lua require('persistence').load()<CR>"),
   dashboard.button("c", "  Edit config", ":e $MYVIMRC<CR>"),
+  dashboard.button("l", "  Edit lazy", ":Lazy<CR>"),
   dashboard.button("u", "  Update plugins", ":Lazy update<CR>"),
   dashboard.button("q", "  Quit", ":qa<CR>"),
 }

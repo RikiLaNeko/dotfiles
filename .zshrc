@@ -53,7 +53,7 @@ zinit snippet OMZP::vi-mode
 zinit snippet OMZP::virtualenv
 zinit snippet OMZP::web-search
 
-
+fpath=("$HOME/.zsh/completions" $fpath)
 # Load completions
 autoload -Uz compinit && compinit
 
@@ -68,7 +68,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 #Alias
 alias vim=nvim
-alias ls="eza --icons=always --color"
+alias ls="eza --icons=always --color always"
 alias e="exit"
 alias c="clear"
 alias cat=bat
@@ -85,6 +85,10 @@ alias ll="eza --icons=always --color --long --group-directories-first"
 alias f=fuck
 alias pb-status='ps aux | grep protonmail-bridge'
 alias top=btop
+alias tauri="cargo tauri"
+alias code="codium"
+alias tidycode="$HOME/Code/Perso/Languages/Bash/Organize.sh"
+
 
 #PATH
 export PATH="/home/dedsec/.bun/bin:$PATH"
