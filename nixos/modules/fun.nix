@@ -13,6 +13,7 @@
     dxvk
     prismlauncher
     calibre
+    heroic
   ];
 }
 
