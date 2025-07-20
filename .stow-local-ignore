@@ -2,5 +2,6 @@
 README.md
 sync-dotfiles.sh
 sync-nixos.sh
+sync-all.sh
 nixos
 systemd
