@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-BRANCH="Stow"
+BRANCH="main"
 
 cd "$(dirname "$0")"
 
