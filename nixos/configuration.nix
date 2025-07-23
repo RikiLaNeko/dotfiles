@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/android.nix
       ./modules/archives.nix
       ./modules/communication.nix
       ./modules/cybersecurity.nix

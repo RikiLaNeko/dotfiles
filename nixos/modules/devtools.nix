@@ -4,84 +4,94 @@
   environment.systemPackages = with pkgs; [
 
     # --- Développement Java ---
-    jdk21 # OpenJDK 21
-    kotlin # Langage JVM moderne
-    ktor-cli #Like spring boot but for kotlin
-    hibernate #IDK why when i have spring, but maybe to try?
-    spring-boot-cli # Outils Spring Boot
-    maven # Outil de build Java
-    gradle # Build tool moderne
-    scenebuilder
+    jdk21                     # OpenJDK 21
+    kotlin                    # Langage JVM moderne
+    ktor-cli                  # Framework léger pour services HTTP en Kotlin
+    hibernate                 # ORM Java (souvent utilisé avec Spring)
+    spring-boot-cli           # Outils Spring Boot
+    maven                     # Outil de build Java classique
+    gradle                    # Outil de build moderne
+    scenebuilder              # Interface graphique pour JavaFX
 
-
-    # --- Développement JavaScript ---
-    bun # Runtime JS rapide
-    nodejs #Nodejs
-    nest-cli
+    # --- Développement JavaScript / TypeScript ---
+    bun                       # Runtime JS rapide (alternatif à Node)
+    nodejs                    # Runtime JS standard
+    nest-cli                  # CLI pour NestJS (framework TypeScript backend)
 
     # --- C/C++ ---
-    gcc   # Another LLVM C/C++
-    clang # Compilateur LLVM C/C++
-    cmake # Générateur de build C/C++
-    just # Command runner simple
+    gcc                       # Compilateur GNU C/C++
+    clang                     # Compilateur LLVM C/C++
+    cmake                     # Générateur de build multiplateforme
+    just                      # Command runner simple (alternative à make)
+    gnumake
 
     # --- PHP ---
-    php                    # Langage PHP
-    symfony-cli           # CLI Symfony
-    laravel               # Laravel (si dispo dans ton overlay sinon installer via composer)
+    php                       # Langage PHP
+    symfony-cli               # CLI pour Symfony
+    laravel                   # Framework Laravel (si dispo dans le channel, sinon via composer)
 
     # --- Python ---
-    python3               # Langage Python
-    python3Packages.pip  # Gestionnaire de paquets Python
+    python3                   # Langage Python
+    python3Packages.pip       # Gestionnaire de paquets Python
     python3Packages.virtualenv # Environnements virtuels Python
 
     # --- Go ---
-    go                    # Langage Go
-    gopls                 # Serveur de langage Go
-    wails                 # Framework desktop Go
+    go                        # Langage Go
+    gopls                     # Serveur de langage Go pour LSP
+    wails                     # Framework desktop en Go (WebView + Go)
 
     # --- Rust ---
-    rustup                # Rust toolchain installer
-    cargo                 # Gestionnaire de paquets Rust
-    cargo-tauri           # Outil de build pour Tauri apps
-    rust-analyzer         # Serveur de langage Rust
+    rustup                    # Rustup pour gérer toolchains
+    cargo                     # Gestionnaire de paquets Rust
+    cargo-tauri               # Build d'apps Tauri (desktop)
+    rust-analyzer             # Serveur de langage Rust
 
     # --- Ruby ---
-    ruby                  # Langage Ruby
-    bundler               # Gestionnaire de paquets Ruby
+    ruby                      # Langage Ruby
+    bundler                   # Gestionnaire de dépendances Ruby
+    rubyPackages.railties     #RubyOnRails legacy
+    rails-new                 #RubyOnRails (avec docker ainsi pas de soucis de dépendances)
 
     # --- .NET ---
-    dotnet-sdk            # SDK .NET pour C#, F#, etc.
-    mono
+    dotnet-sdk                # SDK .NET (C#, F#, etc.)
+    mono                      # Implémentation libre de .NET (legacy)
 
-    # --- Erlang ---
-    erlang # Programming language used for massively scalable soft real-time systems
-    gleam # Statically typed language for the Erlang VM
-    beam26Packages.elixir
+    # --- Erlang / BEAM ---
+    erlang                    # Langage fonctionnel temps réel
+    gleam                     # Langage statiquement typé pour la VM BEAM
+    beam26Packages.elixir     # Langage Elixir (fonctionnel concurrent)
 
-    # --- zig --- 
-    zig
+    # --- Zig ---
+    zig                       # Langage système moderne et minimaliste
 
-    # --- haskell --- 
-    haskell-ci
+    # --- Haskell ---
+    haskell-ci                # Outils CI pour Haskell
 
-    # --- Lua --- 
-    lua
-    love
+    # --- Lua ---
+    lua                       # Langage léger et embeddable
+    love                      # Framework de jeux en 2D avec Lua
 
+    # --- Pascal ---
+    fpc                       # Free Pascal Compiler
 
-    # --- Global ---
-    asdf-vm #Extendable version manager
-    dbeaver-bin #Visualise DB
-      
-    # --- Bibliothèques pour GUI ---
-    gtk3          # libgtk-3
-    webkitgtk     # libwebkit
+    # --- Langages supplémentaires ---
+    crystal                   # Langage compilé inspiré de Ruby
+    ada                       # Langage pour systèmes critiques (Ada/SPARK)
+    dmd                       # Compilateur officiel du langage D
+    nim                       # Langage compilé moderne, performant et expressif
 
-    # --- Outils optionnels pour packaging ---
-    nsis          # créateur d'installeurs Windows
-    upx           # compresseur d'exécutables
-    ];
+    # --- Outils globaux ---
+    asdf-vm                   # Version manager extensible (multi-langages)
+    dbeaver-bin               # Interface graphique pour bases de données
 
+    # --- Bibliothèques GUI ---
+    gtk3                      # Lib graphique GTK3
+    webkitgtk                 # Moteur de rendu WebKit GTK
+    libyaml
 
+    # --- Outils de packaging ---
+    nsis                      # Générateur d'installateurs Windows
+    upx                       # Compresseur d'exécutables
+  ];
 }
+
