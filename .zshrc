@@ -93,7 +93,7 @@ alias e="exit"
 alias c="clear"
 alias cat=bat
 alias man=tldr
-alias grep=rg
+alias grep='rg --smart-case --color=always'
 alias cp='rsync -a --info=progress2'
 alias ping=mtr
 alias blame="systemd-analyze blame"
