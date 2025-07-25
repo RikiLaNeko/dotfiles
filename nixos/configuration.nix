@@ -24,6 +24,7 @@
       ./modules/recording.nix
       ./modules/system-utils.nix
       ./modules/terminal-utils.nix
+      ./modules/wallet.nix
     ];
 
   # Bootloader.
