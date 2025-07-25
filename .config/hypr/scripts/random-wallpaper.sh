@@ -33,7 +33,6 @@ echo "Nouveau wallpaper : $NEW"
 if [[ -f "$NEW" ]]; then
   swww img "$NEW" --transition-type grow --transition-duration 2
   echo "$NEW" >"$LAST_WALLPAPER_FILE"
-  notify-send -t 3000 "🌄 Wallpaper changé" "$(basename "$NEW")"
 else
   notify-send -t 3000 "❌ Wallpaper introuvable"
 fi

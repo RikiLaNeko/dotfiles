@@ -22,6 +22,8 @@ zinit snippet OMZP::git
 zinit snippet OMZP::git-auto-fetch
 zinit snippet OMZP::git-commit
 zinit snippet OMZP::gitignore
+zinit snippet OMZP::aliases
+zinit snippet OMZP::alias-finder
 zinit snippet OMZP::gh
 zinit snippet OMZP::sudo
 zinit snippet OMZP::kubectl
