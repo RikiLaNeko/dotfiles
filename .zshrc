@@ -1,85 +1,23 @@
-# Set the directory we want to store zinit and plugins
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+# === Zsh Config ===
 
-# Download Zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-# Source/Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
-
-# Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
-# Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::git-auto-fetch
-zinit snippet OMZP::git-commit
-zinit snippet OMZP::gitignore
-zinit snippet OMZP::aliases
-zinit snippet OMZP::alias-finder
-zinit snippet OMZP::gh
-zinit snippet OMZP::sudo
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
-zinit snippet OMZP::command-not-found
-zinit snippet OMZP::bun
-zinit snippet OMZP::docker
-zinit snippet OMZP::docker-compose
-zinit snippet OMZP::dotnet
-zinit snippet OMZP::eza
-zinit snippet OMZP::fancy-ctrl-z
-zinit snippet OMZP::fzf
-zinit snippet OMZP::gem
-zinit snippet OMZP::golang
-zinit snippet OMZP::gradle
-zinit snippet OMZP::laravel5
-zinit snippet OMZP::minikube
-zinit snippet OMZP::ruby
-zinit snippet OMZP::rust
-zinit snippet OMZP::rsync
-zinit snippet OMZP::ssh
-zinit snippet OMZP::ssh-agent
-zinit snippet OMZP::symfony6
-zinit snippet OMZP::tailscale
-zinit snippet OMZP::thefuck
-zinit snippet OMZP::tldr
-zinit snippet OMZP::tmux
-zinit snippet OMZP::vi-mode
-zinit snippet OMZP::virtualenv
-zinit snippet OMZP::web-search
-
-open_command() {
-  if command -v xdg-open >/dev/null; then
-    xdg-open "$1" >/dev/null 2>&1 &
-  else
-    echo "No suitable open command found." >&2
-  fi
-}
-
-# Ouvre une recherche sur search.nixos.org/packages
-nixpkgs() {
-  local q="${*// /%20}"
-  xdg-open "https://search.nixos.org/packages?channel=25.05&from=0&size=50&sort=relevance&type=packages&query=${q}" >/dev/null 2>&1 &
-}
-
-# Ouvre une recherche sur le wiki NixOS
-nixwiki() {
-  local q="${*// /+}"
-  xdg-open "https://nixos.wiki/index.php?search=${q}&go=Go" >/dev/null 2>&1 &
-}
-
+# Chemin des complétions custom
 fpath=("$HOME/.zsh/completions" $fpath)
-# Load completions
+
+# Chargement de chaque partie
+source "$HOME/.zsh/plugins.zsh"
+source "$HOME/.zsh/aliases.zsh"
+source "$HOME/.zsh/functions.zsh"
+
+# Completions
 autoload -Uz compinit && compinit
 
-zinit cdreplay -q
+# Initialisation des outils
+eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(thefuck --alias)"
+eval "$(direnv hook zsh)"
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -88,50 +26,9 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-#Alias
-alias vim=nvim
-alias ls="eza --icons=always --color always"
-alias e="exit"
-alias c="clear"
-alias cat=bat
-alias man=tldr
-alias grep='rg --smart-case --color=always'
-alias cp='rsync -a --info=progress2'
-alias ping=mtr
-alias blame="systemd-analyze blame"
-alias cchain="systemd-analyze critical-chain"
-alias ps=procs
-alias rmf=shred
-alias find="fd --color=always"
-alias ll="eza --icons=always --color --long --group-directories-first"
-alias f=fuck
-alias pb-status='ps aux | grep protonmail-bridge'
-alias top=btop
-alias tauri="cargo tauri"
-alias code="codium"
-alias tidycode="$HOME/Code/Perso/Languages/Bash/Organize.sh"
-
-
-#PATH
-export PATH="/home/dedsec/.bun/bin:$PATH"
-
-#Config 
+# PATH & éditeurs
+export PATH="$HOME/.bun/bin:$PATH"
 export EDITOR=nvim
 export VISUAL=yazi
 export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
-
-
-# Initialisation de Starship pour un prompt rapide et personnalisable
-eval "$(starship init zsh)"
-
-# Initialisation d'Atuin pour l'historique des commandes
-eval "$(atuin init zsh)"
-
-# Initialisation de zoxide
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(thefuck --alias)"
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
 
