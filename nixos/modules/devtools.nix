@@ -34,6 +34,8 @@
     python3                   # Langage Python
     python3Packages.pip       # Gestionnaire de paquets Python
     python3Packages.virtualenv # Environnements virtuels Python
+    jupyter-all
+    python312Packages.pytest
 
     # --- Go ---
     go                        # Langage Go

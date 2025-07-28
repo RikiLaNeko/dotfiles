@@ -21,6 +21,7 @@
     thefuck #The Fuck is a magnificent app
     swaylock-effects
     libnotify
+    direnv
   ];
 
   services = {
