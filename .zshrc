@@ -7,6 +7,7 @@ fpath=("$HOME/.zsh/completions" $fpath)
 source "$HOME/.zsh/plugins.zsh"
 source "$HOME/.zsh/aliases.zsh"
 source "$HOME/.zsh/functions.zsh"
+source "$HOME/.zsh/server.zsh"
 
 # Completions
 autoload -Uz compinit && compinit
