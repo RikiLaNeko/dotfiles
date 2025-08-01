@@ -9,6 +9,7 @@
     pulsemixer # Mixer en terminal
     vlc #Lecteur multimédia
     audacity
+    stremio
   ];
 }
 
