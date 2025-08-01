@@ -75,15 +75,25 @@ alias ni='nix develop'
 alias tidycode="$HOME/Code/Perso/Languages/Bash/Organize.sh"
 alias tauri="cargo tauri"
 alias code="codium"
-alias f=fuck
+alias f="fuck"
 
 # 🧠 Utilitaires divers
-alias please="sudo $(fc -ln -1)"
 alias pb-status='ps aux | grep protonmail-bridge'
 alias blame="systemd-analyze blame"
 alias cchain="systemd-analyze critical-chain"
 alias y=yazi
 alias top=btop
+please() {
+  local cmd=$(fc -ln -1)
+  case "$cmd" in
+    cd*|source*|alias*|export*|please*)
+      echo "⛔️ Commande non éligible à please : '$cmd'"
+      ;;
+    *)
+      eval sudo "$cmd"
+      ;;
+  esac
+}
 
 # 🛠️ NixOS System Management
 alias nswitch="sudo nixos-rebuild switch"
