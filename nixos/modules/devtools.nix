@@ -29,6 +29,7 @@
     php                       # Langage PHP
     symfony-cli               # CLI pour Symfony
     laravel                   # Framework Laravel (si dispo dans le channel, sinon via composer)
+    php84Packages.composer    #Composer
 
     # --- Python ---
     python3                   # Langage Python
