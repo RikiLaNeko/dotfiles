@@ -8,6 +8,7 @@ source "$HOME/.zsh/plugins.zsh"
 source "$HOME/.zsh/aliases.zsh"
 source "$HOME/.zsh/functions.zsh"
 source "$HOME/.zsh/server.zsh"
+source "$HOME/.zsh/customCommand.zsh"
 
 # Completions
 autoload -Uz compinit && compinit
