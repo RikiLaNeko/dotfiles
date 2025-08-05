@@ -91,3 +91,18 @@ please() {
       ;;
   esac
 }
+
+# Fonction nvim avec fallback fzf
+nvim() {
+  if [ "$#" -eq 0 ]; then
+    local file
+    file=$(fzf --preview 'bat --style=numbers --color=always --line-range :100 {}' 2> /dev/null)
+    if [[ -n "$file" ]]; then
+      command nvim "$file"
+    else
+      echo "❌ Aucun fichier sélectionné."
+    fi
+  else
+    command nvim "$@"
+  fi
+}
