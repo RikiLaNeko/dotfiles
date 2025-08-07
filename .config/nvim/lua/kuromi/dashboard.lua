@@ -11,15 +11,15 @@ dashboard.section.header.val = {
 }
 
 dashboard.section.buttons.val = {
-  dashboard.button("f", "󰈞  Find file", ":FzfLua files<CR>"),
-  dashboard.button("g", "󰊄  Live grep", ":FzfLua live_grep_native<CR>"),
-  dashboard.button("r", "  Recent files", ":FzfLua oldfiles<CR>"),
-  dashboard.button("n", "  New file", ":ene | startinsert<CR>"),
-  dashboard.button("s", "  Restore session", ":lua require('persistence').load()<CR>"),
-  dashboard.button("c", "  Edit config", ":e $MYVIMRC<CR>"),
-  dashboard.button("l", "  Edit lazy", ":Lazy<CR>"),
-  dashboard.button("u", "  Update plugins", ":Lazy update<CR>"),
-  dashboard.button("q", "  Quit", ":qa<CR>"),
+    { key = "f", icon = "󰈞  ", desc = "Find file", cmd = ":FzfLua files<CR>" },
+    { key = "g", icon = "󰊄  ", desc = "Live grep", cmd = ":FzfLua live_grep_native<CR>" },
+    { key = "r", icon = "  ", desc = "Recent files", cmd = ":FzfLua oldfiles<CR>" },
+    { key = "n", icon = "  ", desc = "New file", cmd = ":ene | startinsert<CR>" },
+    { key = "s", icon = "  ", desc = "Restore session", cmd = ":lua require('persistence').load()<CR>" },
+    { key = "c", icon = "  ", desc = "Edit config", cmd = ":e $MYVIMRC<CR>" },
+    { key = "l", icon = "  ", desc = "Edit lazy", cmd = ":Lazy<CR>" },
+    { key = "u", icon = "  ", desc = "Update plugins", cmd = ":Lazy update<CR>" },
+    { key = "q", icon = "  ", desc = "Quit", cmd = ":qa<CR>" },
 }
 
 -- Footer dynamique : Heure, uptime, nombre de plugins
@@ -57,10 +57,7 @@ vim.cmd("hi AlphaFooter guifg=" .. colors.gray .. " guibg=NONE gui=italic")
 
 dashboard.section.header.opts.hl = "AlphaHeader"
 
-for _, button in ipairs(dashboard.section.buttons.val) do
-  button.opts.hl = "AlphaButtons"
-  button.opts.hl_shortcut = "AlphaButtonsShortcut"
-end
+
 
 dashboard.section.footer.opts.hl = "AlphaFooter"
 
