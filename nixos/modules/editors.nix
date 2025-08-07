@@ -5,7 +5,7 @@
     neovim # Editeur de texte puissant
     obsidian #Alternaive auto gérée a notion
     onlyoffice-bin # Alternaive auto gérée a Office
-    
+
 
     #IDEs (fancy, maybe gonna delete? Like just nvim route maybe)
     jetbrains.webstorm #Web IDE from JetBrains

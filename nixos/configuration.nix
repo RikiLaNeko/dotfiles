@@ -4,13 +4,22 @@
 
 { config, pkgs, ... }:
 
+let
+  # On crée une référence vers le paquet défini dans votre flake local
+  nekoShellPkg = (builtins.getFlake "path:/home/dedsec/Code/Perso/nekoToolBox/nekoShell").packages.${pkgs.system}.default;
+in
+
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./containers/podman.nix
       ./modules/android.nix
+      ./services/android.nix
       ./modules/archives.nix
       ./modules/communication.nix
+      ./modules/container.nix
       ./modules/cybersecurity.nix
       ./modules/devtools.nix
       ./modules/editors.nix
@@ -19,10 +28,12 @@
       ./modules/git.nix
       ./modules/hyprland.nix
       ./modules/ia.nix
+      ./services/ia.nix
       ./modules/multimedia.nix
       ./modules/network.nix
       ./modules/recording.nix
       ./modules/system-utils.nix
+      ./services/system-utils.nix
       ./modules/terminal-utils.nix
       ./modules/wallet.nix
     ];
@@ -31,14 +42,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  programs.hyprland={
-  enable = true;
-  xwayland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
   };
 
   xdg.portal = {
-  enable = true;
-  extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   programs.zsh.enable = true;
@@ -64,27 +75,29 @@
   };
 
   virtualisation.libvirtd = {
-  enable = true;
-  qemu = {
-    package = pkgs.qemu_kvm;
-    runAsRoot = true;
-    swtpm.enable = true;
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
       ovmf = {
         enable = true;
-        packages = [(pkgs.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-        }).fd];
+        packages = [
+          (pkgs.OVMF.override {
+            secureBoot = true;
+            tpmSupport = true;
+          }).fd
+        ];
       };
     };
   };
 
 
 
+
   services.xserver.videoDrivers = [ "nvidia" ];
   services.libinput.enable = true;
 
-  virtualisation.docker.enable = true;
 
   networking.hostName = "dedsec-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -127,14 +140,15 @@
   users.users.dedsec = {
     isNormalUser = true;
     description = "dedsec";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" "libvirtd" "seat"];
-    packages = with pkgs; [];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" "libvirtd" "seat" ];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
+    #shell = "${nekoShellPkg}/bin/nekoShell";
   };
 
 
   users.users.root = {
-      shell = pkgs.zsh;
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -143,24 +157,24 @@
   };
 
   nix = {
-  package = pkgs.nix;
-  extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-};
+    package = pkgs.nix;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   fonts.packages = with pkgs; [
-  noto-fonts
-  noto-fonts-cjk-sans
-  noto-fonts-emoji
-  liberation_ttf
-  fira-code
-  fira-code-symbols
-  mplus-outline-fonts.githubRelease
-  dina-font
-  proggyfonts
-  nerd-fonts.jetbrains-mono
-];
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    nerd-fonts.jetbrains-mono
+  ];
 
 
 
@@ -177,19 +191,19 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  
+
   programs.virt-manager.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
   programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
-  
 
- ##########################
+
+  ##########################
   # Graphismes & Hardware  #
   ##########################
   hardware.graphics.enable = true;
@@ -230,11 +244,11 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  
+
   environment.variables = {
     TERM = "ghostty";
     DEFAULT_TERM = "ghostty";
-    EDITOR= "nvim";
+    EDITOR = "nvim";
   };
 
 
