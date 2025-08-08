@@ -37,5 +37,3 @@ export EDITOR=nvim
 export VISUAL=yazi
 export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
 
-
-eval $(thefuck --alias)
