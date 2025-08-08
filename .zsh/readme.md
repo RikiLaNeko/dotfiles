@@ -52,7 +52,7 @@ nvim
 
 ### `cols`
 
-**Description :** Formate la sortie d'une commande en un tableau propre et aligné, avec un en-tête coloré en jaune et gras pour une meilleure lisibilité.
+**Description :** Formate la sortie d'une commande en un tableau propre et aligné.
 
 **Utilisation :**
 ```bash
@@ -67,7 +67,7 @@ df -h | cols
 
 ### `show <NOM_DE_LA_COLONNE>`
 
-**Description :** Extrait une seule colonne de la sortie d'une commande en se basant sur le nom de son en-tête. L'en-tête de la colonne extraite est également coloré. Cette commande est conçue pour fonctionner avec `cols`.
+**Description :** Extrait une seule colonne de la sortie d'une commande en se basant sur le nom de son en-tête.
 
 **Utilisation :**
 ```bash
@@ -76,4 +76,76 @@ docker ps | cols | show IMAGE
 
 # Chercher une image sur Docker Hub et n'afficher que les noms
 docker search redis | cols | show NAME
+```
+
+---
+
+### `num`
+
+**Description :** Ajoute un numéro de ligne (ID) à chaque ligne d'une sortie, en ignorant la première ligne (l'en-tête).
+
+**Utilisation :**
+```bash
+# Lister les fichiers et les numéroter
+ls -l | cols | num
+
+# Chercher une image et numéroter les résultats
+docker search redis | cols | show NAME | num
+```
+
+---
+
+### `dcr [nom_de_l'image]`
+
+**Description :** Une commande multifonction pour gérer Docker de manière interactive, inspirée par `nvim`.
+
+**Utilisation :**
+
+1.  **`dcr` (Mode interactif)**
+    -   Lance `fzf` pour lister tous vos conteneurs (actifs ou non).
+    -   Affiche un aperçu `docker inspect` pour le conteneur sélectionné.
+    -   Après sélection, un menu propose des actions : `exec` (entrer dans le conteneur), `logs`, `stop`, `start`, `rm` (avec confirmation), ou `inspect`.
+
+    ```bash
+    # Lancer le gestionnaire interactif
+    dcr
+    ```
+
+2.  **`dcr <recherche_image>` (Mode création)**
+    -   Cherche une image sur Docker Hub avec le terme fourni.
+    -   Lance `fzf` pour vous permettre de sélectionner l'image exacte dans les résultats.
+    -   Lance un assistant pour créer et démarrer un nouveau conteneur à partir de l'image sélectionnée.
+    -   Demande un nom pour le conteneur et les ports à mapper.
+    -   Démarre le conteneur en mode interactif (`-it`).
+
+    ```bash
+    # Chercher "ubuntu" et sélectionner une image à lancer en mode interactif
+    dcr ubuntu
+    ```
+
+---
+
+### `dcc [recherche_image]`
+
+**Description :** Crée et démarre un conteneur Docker en mode **détaché** (`-d`).
+
+**Utilisation :**
+
+1.  **`dcc` (Mode interactif - images locales)**
+    -   Lance `fzf` pour lister toutes vos **images Docker locales**.
+    -   Affiche un aperçu `docker image inspect`.
+    -   Après sélection, lance l'assistant de création (nom, ports).
+
+2.  **`dcc <recherche_image>` (Mode recherche - Docker Hub)**
+    -   Cherche une image sur Docker Hub avec le terme fourni.
+    -   Lance `fzf` pour sélectionner l'image exacte dans les résultats.
+    -   Après sélection, lance l'assistant de création.
+
+```bash
+# Lister les images locales et en choisir une à lancer
+dcc
+
+# Chercher "redis" sur Docker Hub et en choisir une
+dcc redis
+```
 ```

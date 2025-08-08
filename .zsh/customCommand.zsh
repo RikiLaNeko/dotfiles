@@ -148,3 +148,159 @@ cols() {
   fi
   column -t
 }
+
+# num: Ajoute un numéro de ligne (ID) à la sortie.
+# Numérote chaque ligne de la sortie, en ignorant la ligne d'en-tête.
+#
+# UTILISATION :
+#   <commande> | num
+num() {
+  if [ -t 0 ]; then
+    echo "Utilisation: <commande> | num" >&2
+    return 1
+  fi
+  
+  # Imprime l'en-tête, puis numérote les lignes suivantes avec un formatage.
+  awk 'NR==1 {print} NR>1 {printf "%-4d %s\n", NR-1, $0}'
+}
+
+# dcr: Gérer ou créer des conteneurs Docker de manière interactive.
+dcr() {
+  # Mode 1: Gestion interactive si aucun argument n'est fourni
+  if [ "$#" -eq 0 ]; then
+    local container_info
+    container_info=$(docker ps -a --format "{{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}" | fzf --header "Select a container" --preview 'docker inspect {1}' --height 40% --layout=reverse)
+
+    if [ -z "$container_info" ]; then
+      echo "❌ Aucune sélection."
+      return 1
+    fi
+
+    local container_id=$(echo "$container_info" | awk '{print $1}')
+    local container_name=$(echo "$container_info" | awk '{print $3}')
+
+    echo "Que faire avec le conteneur $container_name ($container_id) ?"
+    local actions=("exec (shell)" "logs" "stop" "start" "rm" "inspect" "quit")
+    local action
+    select action in "${actions[@]}"; do
+      case "$action" in
+        "exec (shell)")
+          docker exec -it "$container_id" /bin/bash
+          break
+          ;;
+        "logs")
+          docker logs -f "$container_id"
+          break
+          ;;
+        "stop")
+          docker stop "$container_id"
+          break
+          ;;
+        "start")
+          docker start "$container_id"
+          break
+          ;;
+        "rm")
+          read "confirm?Êtes-vous sûr de vouloir supprimer le conteneur $container_name? (y/N) "
+          if [[ "$confirm" =~ ^[yY]($|[eE][sS])$ ]]; then
+            docker rm "$container_id"
+          else
+            echo "Suppression annulée."
+          fi
+          break
+          ;;
+        "inspect")
+          docker inspect "$container_id" | bat
+          break
+          ;;
+        "quit")
+          break
+          ;;
+        *)
+          echo "Option invalide."
+          break
+          ;;
+      esac
+    done
+  # Mode 2: Création rapide avec sélection d'image
+  else
+    local image_query="$1"
+    local selected_image
+    selected_image=$(docker search "$image_query" --format "{{.Name}}" | fzf --header "Select an image for interactive session" --height 40% --layout=reverse)
+
+    if [ -z "$selected_image" ]; then
+      echo "❌ Aucune image sélectionnée."
+      return 1
+    fi
+
+    echo "Image sélectionnée : $selected_image"
+
+    local container_name
+    local ports
+
+    read "container_name?Nom du conteneur (optionnel, Entrée pour auto) : "
+    read "ports?Mapper les ports (ex: 8080:80, optionnel) : "
+
+    local run_cmd="docker run -it"
+    if [ -n "$container_name" ]; then
+      run_cmd="$run_cmd --name $container_name"
+    fi
+    if [ -n "$ports" ]; then
+      run_cmd="$run_cmd -p $ports"
+    fi
+
+    run_cmd="$run_cmd $selected_image"
+
+    echo "Commande exécutée : $run_cmd"
+    eval "$run_cmd"
+  fi
+}
+
+# dcc: Créer et démarrer un conteneur Docker en mode détaché (-d).
+dcc() {
+  local selected_image
+
+  # Si aucun argument, lister les images locales. Sinon, chercher sur Docker Hub.
+  if [ "$#" -eq 0 ]; then
+    selected_image=$(docker images --format "{{.Repository}}:{{.Tag}}\t{{.ID}}\t{{.Size}}" | fzf --header "Select a local image to run detached" --preview 'docker image inspect {2}' --height 40% --layout=reverse | awk '{print $1}')
+  else
+    local image_query="$1"
+    selected_image=$(docker search "$image_query" --format "{{.Name}}" | fzf --header "Select an image to run detached" --height 40% --layout=reverse)
+  fi
+
+  # Si aucune image n'est sélectionnée (l'utilisateur a quitté fzf), on arrête.
+  if [ -z "$selected_image" ]; then
+    echo "❌ Aucune image sélectionnée."
+    return 1
+  fi
+
+  echo "Image sélectionnée : $selected_image"
+
+  # Logique de création commune
+  local container_name
+  local ports
+
+  read "container_name?Nom du conteneur (optionnel, Entrée pour auto) : "
+  read "ports?Mapper les ports (ex: 6379:6379, optionnel) : "
+
+  local run_cmd="docker run -d"
+  if [ -n "$container_name" ]; then
+    run_cmd="$run_cmd --name $container_name"
+  fi
+  if [ -n "$ports" ]; then
+    run_cmd="$run_cmd -p $ports"
+  fi
+
+  run_cmd="$run_cmd $selected_image"
+
+  echo "Lancement de la commande : $run_cmd"
+  local container_id
+  container_id=$(eval "$run_cmd")
+  
+  if [ $? -eq 0 ]; then
+    echo "✅ Conteneur démarré en mode détaché."
+    echo "   ID court: $(echo "$container_id" | cut -c1-12)"
+  else
+    echo "❌ Erreur lors du démarrage du conteneur."
+  fi
+}
