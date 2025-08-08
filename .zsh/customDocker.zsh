@@ -191,7 +191,16 @@ dpl() {
           echo "   Sur NixOS, vous pouvez l'installer avec : nix-shell -p jq" >&2
           return 1
         fi
-        docker logs -t "$container_id" | jq . | bat --paging=always --language=json
+        
+        local json_logs=$(docker logs "$container_id" | jq -R 'fromjson? // empty')
+        if [ -z "$json_logs" ]; then
+          echo "
+🔎 Aucune ligne au format JSON valide n'a été trouvée dans les logs de ce conteneur.
+"
+          read -s -k "?Appuyez sur une touche pour retourner au menu..."
+        else
+          echo "$json_logs" | bat --paging=always --language=json
+        fi
         break
         ;;
       "quit")

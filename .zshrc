@@ -10,6 +10,7 @@ source "$HOME/.zsh/functions.zsh"
 source "$HOME/.zsh/server.zsh"
 source "$HOME/.zsh/customCommand.zsh"
 source "$HOME/.zsh/customDocker.zsh"
+source "$HOME/.zsh/customNix.zsh"
 
 # Completions
 autoload -Uz compinit && compinit

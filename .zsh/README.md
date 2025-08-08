@@ -310,5 +310,19 @@ dvol create my-data
 # Lancer l'assistant de nettoyage
 dprune
 ```
+
+---
+
+### `nixm`
+
+**Description :** Un gestionnaire interactif pour les opérations courantes de NixOS.
+
+**Utilisation :**
+-   Lance un menu pour rechercher des paquets, gérer les générations, nettoyer le store, éditer la configuration, voir les logs, appliquer ou annuler la configuration.
+
+```bash
+# Lancer le gestionnaire NixOS interactif
+nixm
+```
 ```
 ```
