@@ -172,17 +172,22 @@ dps -a
 
 ### `dpl [nom_ou_id_conteneur]`
 
-**Description :** Affiche les logs (`-f`) d'un conteneur.
+**Description :** Affiche les logs d'un conteneur avec des options de formatage avancées.
 
 **Utilisation :**
 -   **Sans argument :** Lance `fzf` pour sélectionner un conteneur.
--   **Avec argument :** Affiche directement les logs du conteneur spécifié.
+-   **Avec argument :** Agit directement sur le conteneur spécifié.
+-   Après sélection, un menu propose plusieurs modes d'affichage :
+    -   Suivi des logs en temps réel (`-f`), avec ou sans timestamps.
+    -   Affichage de tous les logs (paginé avec `bat`).
+    -   Filtrage des logs en temps réel avec `grep`.
+    -   Formatage "pretty-print" pour les logs JSON (nécessite `jq`).
 
 ```bash
-# Sélectionner un conteneur pour voir ses logs
+# Lancer le menu de logs interactif
 dpl
 
-# Voir les logs du conteneur "mon_app"
+# Accéder directement au menu pour le conteneur "mon_app"
 dpl mon_app
 ```
 
@@ -250,6 +255,60 @@ dri
 ```bash
 # Lancer le gestionnaire interactif Docker Compose
 dco
+```
+
+---
+
+### `dstat`
+
+**Description :** Affiche les statistiques d'utilisation des ressources (CPU, RAM, réseau) pour les conteneurs en temps réel.
+
+**Utilisation :**
+-   Lance `fzf` pour sélectionner un ou plusieurs conteneurs (`Tab`).
+-   Affiche `docker stats` uniquement pour les conteneurs sélectionnés.
+
+```bash
+# Lancer le sélecteur de conteneurs à surveiller
+dstat
+```
+
+---
+
+### `dvol [create] [nom_volume]`
+
+**Description :** Gère les volumes Docker.
+
+**Utilisation :**
+1.  **`dvol` (Mode suppression)**
+    -   Lance `fzf` pour lister et sélectionner les volumes à supprimer (`Tab` pour la multi-sélection).
+    -   Affiche un aperçu `docker volume inspect`.
+    -   Demande confirmation avant de supprimer.
+
+2.  **`dvol create [nom_volume]` (Mode création)**
+    -   Crée un nouveau volume. Si le nom n'est pas fourni, il sera demandé.
+
+```bash
+# Lancer le sélecteur de volumes à supprimer
+dvol
+
+# Créer un volume nommé "my-data"
+dvol create my-data
+```
+
+---
+
+### `dprune`
+
+**Description :** Lance un assistant de nettoyage interactif et sécurisé pour les ressources Docker.
+
+**Utilisation :**
+-   Affiche un menu pour choisir quoi nettoyer : conteneurs, images (dangling ou toutes), volumes, réseaux.
+-   Propose une option pour un nettoyage complet du système.
+-   Utilise les commandes `docker * prune` natives, qui demandent toujours une confirmation.
+
+```bash
+# Lancer l'assistant de nettoyage
+dprune
 ```
 ```
 ```
