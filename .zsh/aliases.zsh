@@ -58,6 +58,8 @@ alias pbuild="fpc main.pas"
 # ☕ Java
 alias jbuild="javac Main.java"
 alias jrun="java Main"
+alias gri='gradle init --type java-application --dsl kotlin --project-name app --package xyz.dedsecm --test-framework junit --incubating'
+
 
 # 🦜 Kotlin
 alias kbuild="kotlinc Main.kt -include-runtime -d main.jar"
@@ -68,7 +70,7 @@ alias dotr="dotnet run"
 alias dotb="dotnet build"
 
 # Svelte
-alias snew="bun create vite --template svelte"
+alias snew="bunx sv create"
 
 
 # ⚙️ Dev & tools
