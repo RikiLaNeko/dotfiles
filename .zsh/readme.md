@@ -146,6 +146,110 @@ docker search redis | cols | show NAME | num
 dcc
 
 # Chercher "redis" sur Docker Hub et en choisir une
+# Chercher "redis" et sélectionner une image à lancer en arrière-plan
 dcc redis
+```
+
+---
+
+### `dps`
+
+**Description :** Affiche les conteneurs Docker dans une liste interactive `fzf`.
+
+**Utilisation :**
+-   Affiche les conteneurs en cours avec leur ID, Image, Statut, Ports et Nom.
+-   Accepte les arguments de `docker ps`, comme `-a` pour voir tous les conteneurs.
+
+```bash
+# Lister les conteneurs en cours de manière interactive
+dps
+
+# Lister TOUS les conteneurs (actifs et arrêtés)
+dps -a
+```
+
+---
+
+### `dpl [nom_ou_id_conteneur]`
+
+**Description :** Affiche les logs (`-f`) d'un conteneur.
+
+**Utilisation :**
+-   **Sans argument :** Lance `fzf` pour sélectionner un conteneur.
+-   **Avec argument :** Affiche directement les logs du conteneur spécifié.
+
+```bash
+# Sélectionner un conteneur pour voir ses logs
+dpl
+
+# Voir les logs du conteneur "mon_app"
+dpl mon_app
+```
+
+---
+
+### `dpsh [nom_ou_id_conteneur]`
+
+**Description :** Ouvre un shell (`/bin/bash`) dans un conteneur.
+
+**Utilisation :**
+-   **Sans argument :** Lance `fzf` pour sélectionner un conteneur.
+-   **Avec argument :** Ouvre un shell dans le conteneur spécifié.
+
+```bash
+# Sélectionner un conteneur pour y ouvrir un shell
+dpsh
+
+# Ouvrir un shell dans le conteneur "mon_app"
+dpsh mon_app
+```
+
+---
+
+### `drm`
+
+**Description :** Supprime des conteneurs de manière interactive.
+
+**Utilisation :**
+-   Lance `fzf` en mode multi-sélection (`Tab` pour choisir).
+-   Affiche un aperçu `docker inspect`.
+-   Demande confirmation avant de forcer la suppression (`rm -f`).
+
+```bash
+# Lancer le sélecteur de conteneurs à supprimer
+drm
+```
+
+---
+
+### `dri`
+
+**Description :** Supprime des images Docker locales de manière interactive.
+
+**Utilisation :**
+-   Lance `fzf` en mode multi-sélection (`Tab` pour choisir).
+-   Affiche un aperçu `docker image inspect`.
+-   Demande confirmation avant de supprimer.
+
+```bash
+# Lancer le sélecteur d'images à supprimer
+dri
+```
+
+---
+
+### `dco`
+
+**Description :** Gestionnaire interactif pour Docker Compose.
+
+**Utilisation :**
+-   Doit être lancé dans un répertoire contenant un `docker-compose.yml`.
+-   Affiche un menu d'actions : `up -d`, `down`, `logs`, `ps`, `build`, `exec`.
+-   L'action `exec` permet de choisir le service via `fzf`.
+
+```bash
+# Lancer le gestionnaire interactif Docker Compose
+dco
+```
 ```
 ```

@@ -9,6 +9,7 @@ source "$HOME/.zsh/aliases.zsh"
 source "$HOME/.zsh/functions.zsh"
 source "$HOME/.zsh/server.zsh"
 source "$HOME/.zsh/customCommand.zsh"
+source "$HOME/.zsh/customDocker.zsh"
 
 # Completions
 autoload -Uz compinit && compinit
