@@ -1,6 +1,7 @@
 .git
 .gitignore
 README.md
+readme.md
 sync-dotfiles.sh
 sync-nixos.sh
 sync-all.sh

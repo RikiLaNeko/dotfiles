@@ -28,8 +28,7 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::bun
-zinit snippet OMZP::docker
-zinit snippet OMZP::docker-compose
+zinit snippet OMZP::podman
 zinit snippet OMZP::dotnet
 zinit snippet OMZP::eza
 zinit snippet OMZP::fancy-ctrl-z
@@ -48,7 +47,6 @@ zinit snippet OMZP::symfony6
 zinit snippet OMZP::tailscale
 zinit snippet OMZP::thefuck
 zinit snippet OMZP::tldr
-zinit snippet OMZP::tmux
 zinit snippet OMZP::vi-mode
 zinit snippet OMZP::virtualenv
 zinit snippet OMZP::web-search

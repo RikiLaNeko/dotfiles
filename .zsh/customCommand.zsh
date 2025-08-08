@@ -106,3 +106,45 @@ nvim() {
     command nvim "$@"
   fi
 }
+
+# show: Extraire une colonne de la sortie d'une commande par son nom.
+show() {
+  if [ -t 0 ] || [ -z "$1" ]; then
+    echo "Utilisation: <commande> | show <NOM_DE_LA_COLONNE>" >&2
+    return 1
+  fi
+
+  local column_name="$1"
+
+  awk -v col_name="$column_name" '
+    NR==1 {
+      for(i=1; i<=NF; i++) {
+        if($i == col_name) {
+          col_idx = i;
+          break;
+        }
+      }
+      if(col_idx) {
+        print $col_idx;
+      } else {
+        print "Erreur: Colonne '" col_name "' non trouvée." > "/dev/stderr";
+        print "Colonnes disponibles: " $0 > "/dev/stderr";
+        exit 1;
+      }
+    }
+    NR>1 {
+      if(col_idx) {
+        print $col_idx;
+      }
+    }
+  '
+}
+
+# cols: Formate la sortie en colonnes alignées.
+cols() {
+  if [ -t 0 ]; then
+    echo "Utilisation: <commande> | cols" >&2
+    return 1
+  fi
+  column -t
+}

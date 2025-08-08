@@ -67,6 +67,9 @@ alias krun="java -jar main.jar"
 alias dotr="dotnet run"
 alias dotb="dotnet build"
 
+# Svelte
+alias snew="bun create vite --template svelte"
+
 
 # ⚙️ Dev & tools
 alias nb='nix build'
