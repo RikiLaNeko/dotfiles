@@ -102,3 +102,6 @@ alias nflake="sudo nixos-rebuild switch --flake .#$(hostname)"
 alias nclean="sudo nix-collect-garbage -d"
 alias nlog="journalctl -b -p err"
 
+
+alias df=duf
+alias dig=dog

@@ -30,6 +30,7 @@
     "network",
     //"mpd",
     "group/sound",
+    "backlight",
     "group/hardware",
     "battery",
     "clock",

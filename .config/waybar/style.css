@@ -104,6 +104,7 @@ window#waybar.empty #window {
   font-size: 1.5rem;
   margin: 0 0.5rem;
 }
+
 #custom-quicklink1 {
   /* margin-left: 0; */
 }
@@ -127,6 +128,7 @@ battery,
 #workspaces button {
   margin-right: 2px;
 }
+
 #workspaces button:last-child {
   margin-right: 0;
 }
@@ -151,11 +153,11 @@ battery,
   animation-direction: alternate;
 }
 
-#tray > .passive {
+#tray>.passive {
   -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
+#tray>.needs-attention {
   -gtk-icon-effect: highlight;
   background-color: @activeBg;
 }
@@ -164,9 +166,18 @@ label:focus {
   background-color: @activeBg;
 }
 
+
+#quicklinks {}
+
 #backlight {
-  background-color: @activeBg;
+  background-color: @surface;
+  border-radius: 999px;
+  box-shadow: 0px 0px 8px 4px @shadow inset;
+  padding: 0 8px;
+  color: @text;
 }
 
-#quicklinks {
+#backlight:hover {
+  background-color: @hoverBg;
+  color: @hoverFg;
 }

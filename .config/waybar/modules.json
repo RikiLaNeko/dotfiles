@@ -14,7 +14,6 @@
       "*": 5
     }
   },
-
   // Hyprland Window
   "hyprland/window": {
     "rewrite": {
@@ -27,7 +26,6 @@
     },
     "separate-outputs": true
   },
-
   // Wofi Application Launcher
   "custom/appmenu": {
     "format": "",
@@ -36,7 +34,6 @@
     "on-click-right": "~/.config/notscripter/scripts/keybindings.sh",
     "tooltip": false
   },
-
   // Power Menu
   "custom/exit": {
     "format": "",
@@ -44,7 +41,6 @@
     "on-click": "wlogout -b 4",
     "tooltip": false
   },
-
   "custom/notification": {
     "tooltip": false,
     // "format": "{} {icon}",
@@ -66,7 +62,6 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
-
   // Keyboard State
   //"keyboard-state": {
   //  //"numlock": true,
@@ -77,13 +72,11 @@
   //  //  //"unlocked": ""
   //  //}
   //},
-
   // System tray
   "tray": {
     "icon-size": 24,
     "spacing": 8
   },
-
   // Clock
   "clock": {
     // "timezone": "America/New_York",
@@ -91,11 +84,9 @@
     "format": "󰥔 {0:%H:%M}",
     "format-alt": "󰥔 {0:%H:%M}   {0:%d-%m-%Y}"
   },
-
   "hyprland/language": {
     "format": "/ K {short}"
   },
-
   // Network
   "network": {
     "format": "{ifname}",
@@ -110,7 +101,6 @@
     "interval": 1,
     "on-click": "nm-connection-editor"
   },
-
   // Battery
   "battery": {
     "states": {
@@ -124,9 +114,14 @@
     "format-alt": "{icon}  {time}",
     // "format-good": "", // An empty format will hide the module
     "format-full": "",
-    "format-icons": [" ", " ", " ", " ", " "]
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
   },
-
   // Bluetooth
   "bluetooth": {
     "format-disabled": "",
@@ -135,14 +130,28 @@
     "on-click": "blueman-manager",
     "format-no-controller": ""
   },
-
+  // Backlight
+  "backlight": {
+    "device": "intel_backlight", // adapter au nom de ton device (via `brightnessctl -l`)
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
   // Other
   "user": {
     "format": "{user}",
     "interval": 60,
     "icon": false
   },
-
   // Idle Inhibator
   "idle_inhibitor": {
     "format": "{icon}",
