@@ -20,7 +20,6 @@ eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(thefuck --alias)"
 eval "$(direnv hook zsh)"
 eval "$(laravel completion zsh)"
 

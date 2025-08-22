@@ -1,0 +1,18 @@
+[Unit]
+Description=GRUB Theme Cycler
+After=multi-user.target
+Wants=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/grub-theme-cycler.sh --auto
+User=root
+StandardOutput=journal
+StandardError=journal
+
+# Optionnel: redémarrer en cas d'échec
+# Restart=on-failure
+# RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

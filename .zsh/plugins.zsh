@@ -45,7 +45,6 @@ zinit snippet OMZP::ssh
 zinit snippet OMZP::ssh-agent
 zinit snippet OMZP::symfony6
 zinit snippet OMZP::tailscale
-zinit snippet OMZP::thefuck
 zinit snippet OMZP::tldr
 zinit snippet OMZP::vi-mode
 zinit snippet OMZP::virtualenv

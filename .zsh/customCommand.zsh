@@ -164,3 +164,89 @@ num() {
   awk 'NR==1 {print} NR>1 {printf "%-4d %s\n", NR-1, $0}'
 }
 
+# Commande gin: Gère les projets Go avec Gin.
+# - Si exécutée dans un dossier avec un go.mod, lance le projet avec '''air'''.
+# - Sinon, crée un nouveau projet Gin avec une structure de base.
+# Usage:
+#   gin -> Lance le serveur de développement (si dans un projet).
+#   gin <nom_du_projet> -> Crée un nouveau projet.
+gin() {
+    # Vérifie si Go est installé
+    if ! command -v go &> /dev/null; then
+        echo "❌ Go n'''est pas installé. Veuillez l'''installer pour continuer."
+        return 1
+    fi
+
+    # Si un fichier go.mod existe, on est dans un projet Go.
+    if [ -f "go.mod" ]; then
+        echo "🚀 Projet Go détecté. Lancement avec air..."
+        # Vérifie si air est installé, sinon l'''installe
+        if ! command -v air &> /dev/null; then
+            echo "💨 air n'''est pas trouvé. Installation de air..."
+            go install github.com/cosmtrek/air@latest
+            echo "✅ air installé."
+        fi
+        air
+        return 0
+    fi
+
+    # Si aucun projet n'''est détecté, on en crée un.
+    # Un nom de projet est requis.
+    if [ -z "$1" ]; then
+        echo "Usage: gin <nom_du_projet>"
+        return 1
+    fi
+
+    local project_name="$1"
+
+    # Vérifie si le dossier existe déjà
+    if [ -d "$project_name" ]; then
+        echo "❌ Le dossier '$project_name''' existe déjà."
+        return 1
+    fi
+
+    echo "✨ Création du projet Go '$project_name'''..."
+    mkdir -p "$project_name"
+    cd "$project_name" || return
+
+    # Initialise le module Go
+    go mod init "$project_name"
+
+    # Installe Gin
+    echo "📦 Installation de Gin..."
+    go get -u github.com/gin-gonic/gin
+
+    # Crée l'''arborescence du projet
+    echo "📁 Création de l'''arborescence..."
+    mkdir controllers middleware models routes static templates
+
+    # Crée le fichier main.go de base
+    echo "✍️ Création du fichier main.go..."
+    cat << '''EOF''' > main.go
+package main
+
+import (
+    "net/http"
+    "github.com/gin-gonic/gin"
+)
+
+func main() {
+    r := gin.Default()
+
+    r.GET("/", func(c *gin.Context) {
+        c.JSON(http.StatusOK, gin.H{
+            "message": "Hello World from Gin!",
+        })
+    })
+
+    // Lancement du serveur sur le port 8080
+    r.Run()
+}
+EOF
+
+    echo "✅ Projet '$project_name''' créé avec succès."
+    echo "👉 Pour démarrer le serveur, exécutez :"
+    echo "   cd $project_name"
+    echo "   gin"
+} 
+
