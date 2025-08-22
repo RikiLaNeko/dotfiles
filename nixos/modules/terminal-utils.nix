@@ -13,7 +13,6 @@
     eza # `ls` amélioré
     procs # `ps` moderne
     lsof # Liste fichiers ouverts
-    tmux # Multiplexeur de terminal
     ncdu # Analyse disque
     rsync # Synchronisation de fichiers
     yazi # TUI file manager

@@ -18,10 +18,13 @@
     progress #Monitoring
     ipcalc #subnet calc
     magic-wormhole #P2P,E2E ecnrypted file transfer
-    thefuck #The Fuck is a magnificent app
+    #thefuck #The Fuck is a magnificent app
+    pay-respects #The fuck alternative
     swaylock-effects
     libnotify
     direnv
     tree
+    grub2
+    lsb-release
   ];
 }

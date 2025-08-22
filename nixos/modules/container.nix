@@ -6,5 +6,9 @@
     podman-tui # status of containers in the terminal
     #docker-compose # start group of containers for dev
     podman-compose # start group of containers for dev
+    podman-desktop # graphical tool for developing on containers and Kubernetes
+    k3s
+    minikube
+    virtiofsd
   ];
 }

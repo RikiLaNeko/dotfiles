@@ -25,6 +25,9 @@
     cmake # Générateur de build multiplateforme
     just # Command runner simple (alternative à make)
     gnumake
+    coreboot-toolchain.i386
+    coreboot-toolchain.x64
+    gdb
 
     # --- PHP ---
     php # Langage PHP
@@ -44,6 +47,7 @@
     gopls # Serveur de langage Go pour LSP
     wails # Framework desktop en Go (WebView + Go)
     wkhtmltopdf
+    air
 
     # --- Rust ---
     rustup # Rustup pour gérer toolchains
@@ -79,6 +83,10 @@
     # --- Pascal ---
     fpc # Free Pascal Compiler
 
+    # --- ASM ---
+    nasm 
+    bochs
+
     # --- Langages supplémentaires ---
     crystal # Langage compilé inspiré de Ruby
     ada # Langage pour systèmes critiques (Ada/SPARK)
@@ -91,7 +99,7 @@
 
     # --- Bibliothèques GUI ---
     gtk3 # Lib graphique GTK3
-    webkitgtk # Moteur de rendu WebKit GTK
+    #webkitgtk_6_0# Moteur de rendu WebKit GTK
     libyaml
 
     # --- Outils de packaging ---

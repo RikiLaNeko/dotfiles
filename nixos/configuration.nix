@@ -29,6 +29,7 @@ in
       ./modules/hyprland.nix
       ./modules/ia.nix
       ./services/ia.nix
+      ./modules/lazy.nix
       ./modules/multimedia.nix
       ./modules/network.nix
       ./modules/recording.nix
@@ -39,8 +40,28 @@ in
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = false;
+  boot.loader.efi.canTouchEfiVariables = false;
+
+  boot.loader.grub = {
+  enable = true;
+  efiSupport = true;
+  efiInstallAsRemovable = true;  # installe dans /EFI/BOOT/BOOTX64.EFI
+  device = "nodev";               # obligatoire pour NixOS
+  };
+  boot.loader.grub.theme = "/home/dedsec/dotfiles/.config/grub/themes/dedsec/Compact";
+
+
+
+
+  boot.kernelParams = [
+  "cgroup_enable=cpuset"
+  "cgroup_enable=memory"
+  "cgroup_enable=hugetlb"
+  "cgroup_no_v1=all"
+  "systemd.unified_cgroup_hierarchy=1"
+];
+
 
   programs.hyprland = {
     enable = true;
@@ -251,7 +272,40 @@ in
     EDITOR = "nvim";
   };
 
+  # Service pour changer automatiquement le thème GRUB
+  systemd.services.grub-theme-cycler = {
+    description = "GRUB Theme Cycler";
+    after = [ "multi-user.target" ];
+    wants = [ "multi-user.target" ];
+    
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash /home/dedsec/dotfiles/.config/grub/cycler/cycler.sh --auto";
+      User = "root";
+      StandardOutput = "journal";
+      StandardError = "journal";
+      # Définir le PATH pour inclure les outils système NixOS
+      Environment = [
+        "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/system/sw/bin:/usr/bin:/bin"
+        "NIX_PATH=nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos:nixos-config=/etc/nixos/configuration.nix"
+      ];
+    };
+    
+    # Activer le service pour qu'il démarre automatiquement
+    wantedBy = [ "multi-user.target" ];
+  };
 
+
+  # Optionnel: Timer pour exécuter périodiquement (au lieu d'au démarrage)
+  # systemd.timers.grub-theme-cycler = {
+  #   description = "Run GRUB Theme Cycler daily";
+  #   timerConfig = {
+  #     OnCalendar = "daily";
+  #     Persistent = true;
+  #   };
+  #   wantedBy = [ "timers.target" ];
+  # };
+  
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
