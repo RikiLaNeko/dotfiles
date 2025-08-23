@@ -49,8 +49,8 @@ in
   efiInstallAsRemovable = true;  # installe dans /EFI/BOOT/BOOTX64.EFI
   device = "nodev";               # obligatoire pour NixOS
   };
-  boot.loader.grub.theme = "/home/dedsec/dotfiles/.config/grub/themes/dedsec/Compact";
-
+  boot.loader.grub.theme = "/home/dedsec/dotfiles/.config/grub/themes/minegrub-world-sel-theme/minegrub-world-selection";
+  boot.loader.grub.configurationLimit = 10; #garde seulement 10 entrées dans GRUB
 
 
 
@@ -60,7 +60,7 @@ in
   "cgroup_enable=hugetlb"
   "cgroup_no_v1=all"
   "systemd.unified_cgroup_hierarchy=1"
-];
+  ];
 
 
   programs.hyprland = {
@@ -306,6 +306,19 @@ in
   #   wantedBy = [ "timers.target" ];
   # };
   
+  # Nettoyage automatique des anciennes générations
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";          # ou "daily"
+    options = "--delete-older-than 30d";  # garde 30 jours
+  };
+
+  # Nettoyage automatique des logs systemd aussi
+  services.journald.extraConfig = ''
+    SystemMaxUse=1G
+    MaxRetentionSec=30day
+  '';
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
