@@ -11,7 +11,13 @@ STATE_FILE="/var/lib/grub-theme-cycler/current_theme"
 THEMES_BASE_PATH="/home/dedsec/dotfiles/.config/grub/themes"
 
 # Liste des thèmes disponibles (relatifs au chemin de base)
-THEMES=("bsol" "dedsec/WannaCry" "dedsec/Compact")
+THEMES=("bsol" "dedsec/WannaCry" "dedsec/Compact" "minegrub-world-sel-theme/minegrub-world-selection"
+  "minegrub-theme/minegrub" "Steam-Big-Picture-Grub-Theme" "virtuaverse" "yorha-grub-theme" "crt-amber-theme"
+  "sekiro_grub_theme/Sekiro" "hollow-knight-grub-theme/hollow-grub" "space-isolation/1920x1080" "hyperfluent/nixos"
+  "ultragrub" "Arcade" "fallout" "LoboGrubTheme/lobocorp" "CelesteGRUB/CelesteGRUB1080p" "darkmatter/nixos" "CyberPunk2077/Cyberpunk"
+  "CyberRe/CyberRe" "CyberPunk/Cyberpunk" "catppuccin/src/catppuccin-frappe-grub-theme" "catppuccin/src/catppuccin-macchiato-grub-theme"
+  "catppuccin/src/catppuccin-mocha-grub-theme" "CyberGRUB-2077/CyberGRUB-2077" "grubsouls-theme/grubsouls" "Gorgeous-GRUB-Archive/Gutsblack/archlinux"
+  "Gorgeous-GRUB-Archive/Aero" "Gorgeous-GRUB-Archive/Axiom" "grubby-terminal" "billys-agent-grub2-theme" "CyberXero/CyberXero" "MilkOutsideABagOfMilk/MilkGrub")
 
 # Couleurs pour les messages
 RED='\033[0;31m'
@@ -58,47 +64,32 @@ setup_state_dir() {
 get_current_theme_from_config() {
   local current_theme_path=""
 
-  # Debug: afficher la ligne trouvée
-  log_info "Debug: recherche du thème dans $CONFIG_FILE"
-
   # Chercher dans la config NixOS (deux formats)
   if grep -q "boot\.loader\.grub\.theme.*=" "$CONFIG_FILE"; then
     # Format 1: boot.loader.grub.theme = "/path";
     if grep -q "boot\.loader\.grub\.theme = " "$CONFIG_FILE"; then
       current_theme_path=$(grep "boot\.loader\.grub\.theme = " "$CONFIG_FILE" | sed 's/.*"\(.*\)".*/\1/' | xargs)
-      log_info "Debug: trouvé format 1: $current_theme_path"
 
     # Format 2: theme = "/path"; (dans un bloc)
     elif grep -q "theme = " "$CONFIG_FILE"; then
       current_theme_path=$(grep "theme = " "$CONFIG_FILE" | sed 's/.*"\(.*\)".*/\1/' | xargs)
-      log_info "Debug: trouvé format 2: $current_theme_path"
     fi
-  else
-    log_info "Debug: aucun thème GRUB trouvé"
   fi
 
   # Extraire le nom du thème relatif
   if [[ -n "$current_theme_path" ]]; then
-    log_info "Debug: chemin complet: $current_theme_path"
-
     # Supprimer le chemin de base et les slashes
     local theme_name="${current_theme_path#$THEMES_BASE_PATH/}"
     theme_name="${theme_name%/}" # supprimer slash final si présent
 
-    log_info "Debug: nom du thème extrait: '$theme_name'"
-
     # Trouver l'index correspondant
     for i in "${!THEMES[@]}"; do
       local clean_theme="${THEMES[$i]%/}" # supprimer slash final si présent
-      log_info "Debug: comparaison '$clean_theme' == '$theme_name'"
       if [[ "$clean_theme" == "$theme_name" ]]; then
-        log_info "Debug: match trouvé à l'index $i"
         echo "$i"
         return 0
       fi
     done
-
-    log_info "Debug: aucun match trouvé, utilisation de l'index 0"
   fi
 
   # Si pas trouvé, retourner l'index par défaut
@@ -252,15 +243,21 @@ main() {
   local state_index=$(get_current_theme_index_from_state)
   local config_index=$(get_current_theme_from_config)
 
+  # Vérifier que les index sont valides
+  if [[ ! "$state_index" =~ ^[0-9]+$ ]] || [[ "$state_index" -ge ${#THEMES[@]} ]]; then
+    state_index=0
+  fi
+  if [[ ! "$config_index" =~ ^[0-9]+$ ]] || [[ "$config_index" -ge ${#THEMES[@]} ]]; then
+    config_index=0
+  fi
+
   # Si le fichier d'état existe et est différent de la config, utiliser l'état
   # (ça veut dire qu'on vient de faire un changement)
   local current_index
   if [[ -f "$STATE_FILE" ]] && [[ "$state_index" != "$config_index" ]]; then
     current_index="$state_index"
-    log_info "Utilisation de l'état sauvegardé (changement récent)"
   else
     current_index="$config_index"
-    log_info "Lecture depuis la configuration NixOS"
   fi
 
   local next_index=$(((current_index + 1) % ${#THEMES[@]}))
@@ -268,10 +265,9 @@ main() {
   local next_theme="${THEMES[$next_index]}"
 
   log_info "Thèmes disponibles: ${THEMES[*]}"
-  log_info "Thème actuel: $current_theme"
-  log_info "Prochain thème: $next_theme"
+  log_info "Changement: $current_theme → $next_theme"
 
-  # Demander confirmation en mode interactif
+  # Demander confirmation seulement en mode interactif
   if [[ "${1:-}" != "--auto" ]]; then
     read -p "Passer de '$current_theme' vers '$next_theme' ? [y/N] " -n 1 -r
     echo
