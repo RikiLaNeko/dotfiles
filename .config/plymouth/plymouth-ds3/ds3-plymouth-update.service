@@ -1,0 +1,10 @@
+[Unit]
+Description=Ds3 Plymouth Update Service
+After=hibernate.target
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/share/plymouth/themes/ds3/update_config.py
+ExecStartPost=/usr/bin/mkinitcpio -P
+
+[Install]
+WantedBy=multi-user.target hibernate.target
