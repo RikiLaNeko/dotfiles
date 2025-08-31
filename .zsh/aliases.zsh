@@ -105,3 +105,5 @@ alias nlog="journalctl -b -p err"
 
 alias df=duf
 alias dig=dog
+
+alias man=tldr
