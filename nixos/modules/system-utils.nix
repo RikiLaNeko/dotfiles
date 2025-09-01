@@ -26,5 +26,7 @@
     tree
     grub2
     lsb-release
+    netcat 
+    openssl
   ];
 }

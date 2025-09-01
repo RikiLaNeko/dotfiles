@@ -7,6 +7,8 @@
     gitleaks # Scanner de secrets dans les dépôts
     gh #Cli Github
     diff-so-fancy
+    jujutsu
+    jjui
   ];
 }
 

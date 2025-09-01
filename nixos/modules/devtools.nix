@@ -105,6 +105,7 @@
     # --- Outils de packaging ---
     nsis # Générateur d'installateurs Windows
     upx # Compresseur d'exécutables
+    scc
   ];
 }
 

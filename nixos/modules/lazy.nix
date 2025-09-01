@@ -7,5 +7,6 @@
     lazysql # TUI SQL en terminal
     lazyjournal #TUI for journalctl, file system logs, as well as Docker and Podman containers
     lazycli #Tool to static turn CLI commands into TUIs
+    lazyjj
   ];
 }

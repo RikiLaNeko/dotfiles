@@ -18,6 +18,7 @@ in
       ./modules/android.nix
       ./services/android.nix
       ./modules/archives.nix
+      ./services/custom.nix
       ./modules/communication.nix
       ./modules/container.nix
       ./modules/cybersecurity.nix
@@ -49,7 +50,7 @@ in
   efiInstallAsRemovable = true;  # installe dans /EFI/BOOT/BOOTX64.EFI
   device = "nodev";               # obligatoire pour NixOS
   };
-  boot.loader.grub.theme = "/home/dedsec/dotfiles/.config/grub/themes/minegrub-world-sel-theme/minegrub-world-selection";
+  boot.loader.grub.theme = "/home/dedsec/dotfiles/.config/grub/themes/catppuccin/src/catppuccin-frappe-grub-theme";
   boot.loader.grub.configurationLimit = 10; #garde seulement 10 entrées dans GRUB
 
 
@@ -161,7 +162,7 @@ in
   users.users.dedsec = {
     isNormalUser = true;
     description = "dedsec";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" "libvirtd" "seat" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "docker" "libvirtd" "seat" "render"];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
     #shell = "${nekoShellPkg}/bin/nekoShell";
@@ -215,9 +216,14 @@ in
 
   programs.virt-manager.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+  
+  nixpkgs.overlays = [
+  (builtins.getFlake "github:SteamClientHomebrew/Millennium").overlays.default
+  ];
 
   programs.steam = {
     enable = true;
+        package = pkgs.steam-millennium;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
@@ -272,52 +278,6 @@ in
     EDITOR = "nvim";
   };
 
-  # Service pour changer automatiquement le thème GRUB
-  systemd.services.grub-theme-cycler = {
-    description = "GRUB Theme Cycler";
-    after = [ "multi-user.target" ];
-    wants = [ "multi-user.target" ];
-    
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash /home/dedsec/dotfiles/.config/grub/cycler/cycler.sh --auto";
-      User = "root";
-      StandardOutput = "journal";
-      StandardError = "journal";
-      # Définir le PATH pour inclure les outils système NixOS
-      Environment = [
-        "PATH=/run/current-system/sw/bin:/nix/var/nix/profiles/system/sw/bin:/usr/bin:/bin"
-        "NIX_PATH=nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos:nixos-config=/etc/nixos/configuration.nix"
-      ];
-    };
-    
-    # Activer le service pour qu'il démarre automatiquement
-    wantedBy = [ "multi-user.target" ];
-  };
-
-
-  # Optionnel: Timer pour exécuter périodiquement (au lieu d'au démarrage)
-  # systemd.timers.grub-theme-cycler = {
-  #   description = "Run GRUB Theme Cycler daily";
-  #   timerConfig = {
-  #     OnCalendar = "daily";
-  #     Persistent = true;
-  #   };
-  #   wantedBy = [ "timers.target" ];
-  # };
-  
-  # Nettoyage automatique des anciennes générations
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";          # ou "daily"
-    options = "--delete-older-than 30d";  # garde 30 jours
-  };
-
-  # Nettoyage automatique des logs systemd aussi
-  services.journald.extraConfig = ''
-    SystemMaxUse=1G
-    MaxRetentionSec=30day
-  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
