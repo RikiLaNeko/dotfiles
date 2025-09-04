@@ -15,6 +15,7 @@
 
     # --- Développement JavaScript / TypeScript ---
     bun # Runtime JS rapide (alternatif à Node)
+    pnpm
     nodejs # Runtime JS standard
     nest-cli # CLI pour NestJS (framework TypeScript backend)
     electron-bin

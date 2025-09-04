@@ -50,7 +50,7 @@ in
   efiInstallAsRemovable = true;  # installe dans /EFI/BOOT/BOOTX64.EFI
   device = "nodev";               # obligatoire pour NixOS
   };
-  boot.loader.grub.theme = "/home/dedsec/dotfiles/.config/grub/themes/catppuccin/src/catppuccin-frappe-grub-theme";
+  boot.loader.grub.theme = "/home/dedsec/dotfiles/.config/grub/themes/grubsouls-theme/grubsouls";
   boot.loader.grub.configurationLimit = 10; #garde seulement 10 entrées dans GRUB
 
 
@@ -217,13 +217,10 @@ in
   programs.virt-manager.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   
-  nixpkgs.overlays = [
-  (builtins.getFlake "github:SteamClientHomebrew/Millennium").overlays.default
-  ];
 
+  
   programs.steam = {
     enable = true;
-        package = pkgs.steam-millennium;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers

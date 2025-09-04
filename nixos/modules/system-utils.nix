@@ -28,5 +28,8 @@
     lsb-release
     netcat 
     openssl
+    tor-browser
+    guacamole-client
+    guacamole-server
   ];
 }
