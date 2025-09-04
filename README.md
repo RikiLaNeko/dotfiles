@@ -1,3 +1,8 @@
+> ⚠️ **Important :**  
+> Ce dépôt a été migré vers GitLab.  
+> Vous pouvez le trouver ici : [Dotfile](https://gitlab.com/RikiLaNeko/dotfile)
+
+
 <h1 align="center" style="display:flex;justify-content:center;align-items:center;gap:10px;">
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="55"/>
   Dotfiles &amp; <span style="color:#6a3d8b;">GNU Stow</span>
