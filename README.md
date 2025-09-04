@@ -17,7 +17,7 @@
   <a href="https://github.com/ghostty-org/ghostty"><img src="https://img.shields.io/badge/Ghostty-terminal-7B7B7B?logo=terminal&style=flat-square"></a>
   <a href="https://hyprland.org/"><img src="https://img.shields.io/badge/Hyprland-wayland-6C63FF?logo=wayland&style=flat-square"></a>
   <a href="https://neovim.io/"><img src="https://img.shields.io/badge/Neovim-lazyvim-57A143?logo=neovim&style=flat-square"></a>
-  <a href="https://ohmyz.sh/"><img src="https://img.shields.io/badge/Zsh-ohmyzsh-333?logo=gnu-bash&style=flat-square"></a>
+  <a href="https://github.com/zdharma-continuum/zinit">  <img src="https://img.shields.io/badge/Zsh-zinit-333?logo=gnuzsh&style=flat-square" alt="Zinit"></a>
   <a href="https://starship.rs/"><img src="https://img.shields.io/badge/Starship-fast-7d5fff?logo=starship&style=flat-square"></a>
   <a href="https://catppuccin.com/"><img src="https://img.shields.io/badge/Theme-Catppuccin-F5C2E7?logo=paintpalette&logoColor=white&style=flat-square"></a>
 </p>
@@ -44,11 +44,11 @@
 - **Distro** : NixOS
 - **WM/DE** : Hyprland
 - **Terminal** : Ghostty
-- **Shell** : Zsh + Oh My Zsh + plugins persos
+- **Shell** : Zsh + Zinit + plugins persos
 - **Prompt** : Starship
 - **Éditeur** : Neovim (LazyVim)
 - **Launcher** : Wofi (Catppuccin)
-- **Autres outils** : Tmux, Git, etc.
+- **Autres outils** : Zellij, Git, etc.
 
 ---
 
@@ -72,8 +72,8 @@ graph TD
 
 ```bash
 git clone https://github.com/RikiLaNeko/dotfiles.git
-cd dotfiles/stow
-stow .
+cd dotfiles/
+stow --adopt .
 ```
 Pour une seule app :
 ```bash
@@ -84,13 +84,14 @@ stow zsh
 
 ## 🛠️ Exemples à explorer
 
-- `.zshrc` — prompt, alias, plugins, zsh-autosuggestions
-- `starship.toml` — prompt rapide & stylé
-- `nvim/` — config Neovim full Lua
-- `hyprland.conf` — WM dynamique & custom
-- `tmux.conf` — splits/sessions QOL
-- `ghostty/config` — terminal moderne
-- `wofi/` — launcher Catppuccin
+- `.zshrc` — prompt
+- `.zsh/` - configuration de ZSH complete et custom
+- `.config/starship.toml` — prompt rapide & stylé
+- `.config/nvim/` — config Neovim full Lua
+- `.config/hypr/hyprland.conf` — WM dynamique & custom
+- `.config/zellij/config.kdl` — splits/sessions QOL
+- `.config/ghostty/config` — terminal moderne
+- `.config/wofi/` — launcher Catppuccin
 
 ---
 
